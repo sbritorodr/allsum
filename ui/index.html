@@ -1,0 +1,31 @@
+<html>
+    <head>
+        <Title>Allsum</Title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <h1>Allsum!</h1>
+        <form>
+            <label for="text_input">Text input:</label>
+            <input type="text" id="text_input" name="text_input">
+            <select name="hash_type" id="hash_type">
+                <option value="md5">md5</option>
+                <option value="sha256">sha-256</option>
+            </select>
+            <input type="button" value="Allsum!" onclick="getTextInput()">
+        </form>
+        <p id="hash_output">Hash Output:</p>
+        <script>
+            const invoke = window.__TAURI__.invoke
+            
+            function getTextInput(){
+                const input_text = document.querySelector('#text_input').value;
+                const selected_algorithm = document.querySelector('#hash_type').value;
+                console.log("Text submitted: ", input_text, selected_algorithm)
+                invoke('text_hash_processing', {input_text: input_text, hash_type: selected_algorithm})
+                    .then((output_hash) => document.getElementById('hash_output').innerHTML = output_hash)
+            }
+            
+        </script>
+    </body>
+</html>

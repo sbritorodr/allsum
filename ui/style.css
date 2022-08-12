@@ -1,0 +1,7 @@
+body {
+    align-items: center;
+    text-align: center;
+    align-content: center;
+
+    transform: translateY(100%);
+}

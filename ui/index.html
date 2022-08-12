@@ -11,10 +11,12 @@
             <select name="hash_type" id="hash_type">
                 <option value="md5">md5</option>
                 <option value="sha256">sha-256</option>
+                <option value="sha512">sha-512</option>
+                <option value="blake3">BLAKE-3</option>
             </select>
             <input type="button" value="Allsum!" onclick="getTextInput()">
         </form>
-        <p id="hash_output">Hash Output:</p>
+        <span id="hash_output">Hash Output:</span>
         <script>
             const invoke = window.__TAURI__.invoke
             

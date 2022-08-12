@@ -5,3 +5,10 @@ body {
 
     /*transform: translateY(50%)*/;
 }
+
+#hash_output {
+    font-size: 20px;
+    word-wrap: normal;
+    font-weight: bold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}

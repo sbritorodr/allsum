@@ -19,11 +19,13 @@
             const invoke = window.__TAURI__.invoke
             
             function getTextInput(){
-                const input_text = document.querySelector('#text_input').value;
-                const selected_algorithm = document.querySelector('#hash_type').value;
-                console.log("Text submitted: ", input_text, selected_algorithm)
-                invoke('text_hash_processing', {input_text: input_text, hash_type: selected_algorithm})
-                    .then((output_hash) => document.getElementById('hash_output').innerHTML = output_hash)
+                const input_text = document.querySelector('#text_input').value
+                const selected_algorithm = document.querySelector('#hash_type').value
+                console.log("Text submitted (js): ", input_text, selected_algorithm)
+                console.log(typeof(input_text))
+                invoke('text_hash_processing', {inputStr: input_text, hashType: selected_algorithm})
+                .then((output_hash) => document.getElementById('hash_output').innerHTML = output_hash)
+
             }
             
         </script>

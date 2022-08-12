@@ -10,13 +10,19 @@
             <input type="text" id="text_input" name="text_input">
             <select name="hash_type" id="hash_type">
                 <option value="md5">md5</option>
+                <option value="sha1">sha-1</option>
                 <option value="sha256">sha-256</option>
                 <option value="sha512">sha-512</option>
                 <option value="blake3">BLAKE-3</option>
             </select>
             <input type="button" value="Allsum!" onclick="getTextInput()">
         </form>
-        <span id="hash_output">Hash Output:</span>
+        <div id="hash_text_output_div" onclick="copyToClipboard()">
+            <span id="hash_output_text">af3f1628377c7ea031b7d856c996f0f047f11ab337fd22a1415f5a90fd4130102eeb122bb03dc7ef8f52fc99f301381a01e8c1704c0e6cbe7c2954a81948c51f</span>
+        </div>
+        <div id="copied_msg_div">
+            <span id="copied_msg"></span>
+        </div>
         <script>
             const invoke = window.__TAURI__.invoke
             
@@ -26,8 +32,14 @@
                 console.log("Text submitted (js): ", input_text, selected_algorithm)
                 console.log(typeof(input_text))
                 invoke('text_hash_processing', {inputStr: input_text, hashType: selected_algorithm})
-                .then((output_hash) => document.getElementById('hash_output').innerHTML = output_hash)
-
+                .then((output_hash) => document.getElementById('hash_output_text').innerHTML = output_hash)
+            }
+            //MISC FUNCTIONS:
+            function copyToClipboard(){
+                var copyText = document.getElementById('hash_output_text');
+                navigator.clipboard.writeText(copyText.textContent);
+                console.log(copyText.textContent)
+                document.getElementById('copied_msg').innerHTML = "Copied the Text!"
             }
             
         </script>

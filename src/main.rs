@@ -6,10 +6,16 @@
 use md5;
 use sha2::{Sha256, Sha512, Digest};
 use blake3;
+use crc32fast;
 
+fn allsum_crc32(crc32_input: &str) -> String {
+  let mut hasher = crc32fast::Hasher::new();
+  hasher.update(crc32_input.as_bytes());
+  let checksum = hasher.finalize();
+  format!("{:x}", checksum)
+}
 
 fn allsum_sha256(sha256_input: &str) -> String{
-
   let mut hasher = Sha256::new();
   hasher.update(sha256_input.as_bytes());
   let result = hasher.finalize();
@@ -42,6 +48,7 @@ fn text_hash_processing(inputStr: &str, hashType: &str) -> String {
     "sha256" => allsum_sha256(inputStr),
     "sha512" => allsum_sha512(inputStr),
     "blake3" => allsum_blake3(inputStr),
+    "crc32" => allsum_crc32(inputStr),
     _ => format!("Hash type '{}' is not avaliable", hashType)
   }
 }

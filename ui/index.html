@@ -14,11 +14,12 @@
                 <option value="sha256">sha-256</option>
                 <option value="sha512">sha-512</option>
                 <option value="blake3">BLAKE-3</option>
+                <option value="crc32">CRC-32</option>
             </select>
             <input type="button" value="Allsum!" onclick="getTextInput()">
         </form>
         <div id="hash_text_output_div" onclick="copyToClipboard()">
-            <span id="hash_output_text">af3f1628377c7ea031b7d856c996f0f047f11ab337fd22a1415f5a90fd4130102eeb122bb03dc7ef8f52fc99f301381a01e8c1704c0e6cbe7c2954a81948c51f</span>
+            <span id="hash_output_text"></span>
         </div>
         <div id="copied_msg_div">
             <span id="copied_msg"></span>

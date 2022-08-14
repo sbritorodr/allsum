@@ -7,6 +7,7 @@ pub fn readFilefromPath(path: &str) -> Vec<u8>{
     let file = File::open(path)
         .expect("Cannot read file."); // Needs to be a "You didn't select a file" error. For now on, only unwraps:
                                           // value: Os { code: 2, kind: NotFound, message: "No such file or directory" }
+                                          // Os { code: 21, kind: IsADirectory, message: "Is a directory" }
                                           // Also, an ErrorKind will be good and just pop out an alert without crashing.
     dbg!(&file);
     let mut reader = BufReader::new(file);

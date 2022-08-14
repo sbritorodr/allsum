@@ -9,6 +9,11 @@ function getTextInput(){
     invoke('text_hash_processing', {inputStr: input_text, hashType: selected_algorithm, mode: mode})
     .then((output_hash) => document.getElementById('hash_output_text').innerHTML = output_hash)
 }
+/*
+function getTimeElapsed(){
+    const time_div = document.querySelector
+} */
+
 //MISC FUNCTIONS:
 function copyToClipboard(){
     var copyText = document.getElementById('hash_output_text');

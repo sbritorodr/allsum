@@ -16,6 +16,10 @@
                 <option value="blake3">BLAKE-3</option>
                 <option value="crc32">CRC-32</option>
             </select>
+            <input type="radio" name="hash_mode" id="text_mode" value="Text">
+            <label for="tex_mode">Text</label>
+            <input type="radio" name="hash_mode" id="file_mode" value="File">
+            <label for="file_mode">File</label>
             <input type="button" value="Allsum!" onclick="getTextInput()">
         </form>
         <div id="hash_text_output_div" onclick="copyToClipboard()">
@@ -24,25 +28,6 @@
         <div id="copied_msg_div">
             <span id="copied_msg"></span>
         </div>
-        <script>
-            const invoke = window.__TAURI__.invoke
-            
-            function getTextInput(){
-                const input_text = document.querySelector('#text_input').value
-                const selected_algorithm = document.querySelector('#hash_type').value
-                console.log("Text submitted (js): ", input_text, selected_algorithm)
-                console.log(typeof(input_text))
-                invoke('text_hash_processing', {inputStr: input_text, hashType: selected_algorithm})
-                .then((output_hash) => document.getElementById('hash_output_text').innerHTML = output_hash)
-            }
-            //MISC FUNCTIONS:
-            function copyToClipboard(){
-                var copyText = document.getElementById('hash_output_text');
-                navigator.clipboard.writeText(copyText.textContent);
-                console.log(copyText.textContent)
-                document.getElementById('copied_msg').innerHTML = "Copied the Text!"
-            }
-            
-        </script>
+        <script src="./scripts.js"></script>
     </body>
 </html>

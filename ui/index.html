@@ -28,6 +28,13 @@
         <div id="copied_msg_div">
             <span id="copied_msg"></span>
         </div>
+        <div class='float-message' id="float-message" hidden="">
+            <div class='float-message-inner'>
+              <a href="#!" onclick="document.getElementById('float-message').hidden = true;" class="close-link">X</a>
+                <p id="float-message-text">This is an error message</p>
+            </div>
+          </div>
         <script src="./scripts.js"></script>
+        <script> msgBox("Error test! 😣")</script>
     </body>
 </html>

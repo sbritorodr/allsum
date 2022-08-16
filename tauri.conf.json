@@ -59,7 +59,10 @@
         "height": 600,
         "resizable": true,
         "title": "Allsum!",
-        "width": 800
+        "center": true,
+        "width": 800,
+        "minWidth": 595,
+        "minHeight": 485
       }
     ]
   }

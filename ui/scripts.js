@@ -24,12 +24,14 @@ function msgBox(msg, style, timer_ms = 5000) {
 }
 const invoke = window.__TAURI__.invoke
 function getTextInput(){
+    document.querySelectorAll('.lds-ripple').style == "display: block;"
     const input_text = document.querySelector('#text_input').value
     const selected_algorithm = document.querySelector('#hash_type').value
     const isFileModeOn = document.querySelector("#switch-button-checkbox").checked // Only testing. Should be remved or implemented on other way
     console.log("Text submitted (js): ", input_text, selected_algorithm)
     invoke('text_hash_processing', {inputStr: input_text, hashType: selected_algorithm, isFileModeOn: isFileModeOn})
     .then((output_hash) => document.getElementById('hash_output_text').innerHTML = output_hash.hash)
+    document.querySelectorAll('.lds-ripple').style == "display: none;"
 }
 function hashMode(){
     let isFileModeOn = document.querySelector("#switch-button-checkbox") // false == text mode

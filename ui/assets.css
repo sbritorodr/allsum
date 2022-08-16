@@ -23,7 +23,7 @@
 .switch-button:before {
   content: "File";
   position: absolute;
-  color: rgb(232, 230, 160);
+  color: white;
   top: 0;
   bottom: 0;
   right: 0;
@@ -80,8 +80,8 @@
 .lds-ripple {
   display: inline-block;
   position: relative;
-  width: 80px;
-  height: 80px;
+  width: 50px;
+  height: 50px;
 }
 
 .lds-ripple div {
@@ -158,4 +158,6 @@
     height: 72px;
     opacity: 0;
   }
-}/*# sourceMappingURL=assets.css.map */
+}
+
+/* CSS DROPDOWN: */

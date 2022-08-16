@@ -23,12 +23,6 @@ body {
   text-shadow: 2px 2px #E9B44C;
 }
 
-#hash-content {
-  position: relative;
-  text-align: center;
-  transform: translate(50%, 50%);
-  width: 700px;
-}
 
 #hash-input {
   position: relative;
@@ -42,7 +36,103 @@ body {
   margin-bottom: 1%;
 }
 #text_input{
-  min-width: 400;
+    min-width: 400;
+    height: 3rem;
+    font-size: 2rem;
+    padding-left: 1rem;
+    padding-bottom: 3px;
+    color: #ffff;
+    background-color: hsl(231, 47%, 24%);
+    border-radius: 20px;
+    border-color: transparent;
+}
+
+#text_input::hover{
+    outline: solid;
+    outline-color: #D33F49;
+    outline-style: auto;
+}
+
+#text_input::placeholder {
+  font-style: italic; 
+  font-size: 1.5rem
+}
+#selector_div{
+  
+}
+#selector_div_flex{
+  display: flex;
+  text-align: center;
+  align-content: center;
+  align-items: center;
+  align-self: center;
+  justify-content: center;
+}
+#hash_type {
+  
+  font-size: 2rem;
+  min-width: 160px;
+  height: 50px;
+  background: #20295a;
+  color: white;
+  font-family: "Calibri";
+  border-radius: 30px;
+  border-color:Transparent;
+  padding-left: 1rem;
+  padding-top: 4;
+  appearance: none;
+}
+#hash_type::hover{
+    outline: solid;
+    outline-color: #D33F49;
+    outline-style: auto;
+}
+.lds-ripple{
+  /* Set display to "inline" or "block" if you want to show this*/
+  left: -10px;
+  top: -7px;
+  scale: 0.5;
+  opacity: 50%;
+  padding-bottom: 0px;
+}
+
+#submit_button_div{
+  position: relative;
+  text-align: center;
+  appearance: none;
+  margin-left: 10px;
+  width: auto;
+  height: auto;
+}
+#submit_button_div:hover{
+  top: 2px;
+  left: 2px;
+}
+#submit_button_text{
+  width: 143px;
+  height: 49px;
+  font-size: 2rem;
+  font-style: italic;
+  background: #20295a;
+  color: white;
+  font-family: Times;
+  border: transparent;
+  border-radius: 30px;
+  box-shadow: 2px 2px orange;
+}
+#submit_button_text:hover{
+  background: #D33F49;
+  box-shadow: 0px 0px orange;
+}
+
+#hash_text_output_div {
+  text-align: center;
+  margin-top: 11px;
+}
+#hash_output_text {
+  display: inline-block;
+  min-width: 308px;
+  max-width: 712px;
   height: 3rem;
   font-size: 2rem;
   padding-left: 1rem;
@@ -51,30 +141,13 @@ body {
   background-color: hsl(231, 47%, 24%);
   border-radius: 20px;
   border-color: transparent;
-  outline: solid;
-  outline-color: #D33F49 ;
-}
-#text_input::placeholder {
-  font-style: italic; 
-  font-size: 1.5rem
-}
-
-#empty_space_form {
-  height: 10;
-}
-
-#hash_output {
-  font-size: 20px;
-  font-weight: bold;
-  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
-}
-
-#hash_output span {
-  color: #ffffff;
-}
-
-#hash_text_output_div {
-  word-break: break-all;
+  padding-right: 11px;
+  padding-top: 8px;
+  overflow: scroll;
+  word-break: normal;
+  /*! box-shadow: inset 0 0 3px #000000; */
+  font-family: monospace;
+  font-size: 2rem;
 }
 
 /* FLOATNG MESSAGE: https://kruxor.com/view/code/GbiHX/floating-message-box-on-bottom-right-of-screen-with-close-button/#! */
@@ -111,4 +184,4 @@ body {
 #float-message-text {
   font-weight: bold;
   font-family: Arial;
-}/*# sourceMappingURL=style.css.map */
+}

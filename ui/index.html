@@ -1,47 +1,59 @@
 <html>
-    <head>
-        <Title>Allsum</Title>
-        <link rel="stylesheet" href="assets.css">
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <h1 id="Title">Allsum!</h1>
-        <div class="switch_button_container">
-            <div class="switch-button">
-                <input class="switch-button-checkbox" type="checkbox" id= "switch-button-checkbox" onclick="hashMode()"></input> <!-- Don't forget is reversed in the animation: If text is "Checked" it means it's not selected in the css animation-->
-                <label class="switch-button-label" for=""><span class="switch-button-label-span">Text</span></label>
-              </div>
+
+<head>
+    <Title>Allsum</Title>
+    <link rel="stylesheet" href="assets.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1 id="Title">Allsum!</h1>
+    <div class="switch_button_container">
+        <div class="switch-button">
+            <input class="switch-button-checkbox" type="checkbox" id="switch-button-checkbox"
+                onclick="hashMode()"></input>
+            <!-- Don't forget is reversed in the animation: If text is "Checked" it means it's not selected in the css animation-->
+            <label class="switch-button-label" for=""><span class="switch-button-label-span">Text</span></label>
         </div>
+    </div>
+    <div id="hash_content_text">
         <div id="text-input-div">
             <label for="text_input"></label>
             <input type="text" id="text_input" name="text_input" placeholder="Input your text to be hashed...">
         </div>
-        <div id="hash-content">
-            <div id="hash-input">
-                <div id="selector_div">
-                    <select name="hash_type" id="hash_type"> <!-- Use  this instead! https://codepen.io/STKNG/pen/GbVogZ-->
-                        <option value="md5">md5</option>
-                        <option value="sha1">sha-1</option>
-                        <option value="sha256">sha-256</option>
-                        <option value="sha512">sha-512</option>
-                        <option value="blake3">BLAKE-3</option>
-                        <option value="crc32">CRC-32</option>
-                    </select>
+        <div id="selector_div">
+            <div id="selector_div_flex">
+                <div class="lds-ripple" style="display: none;">
+                    <div></div>
+                    <div></div>
                 </div>
-                <div id="empty_space_form"></div>
-                <input type="button" value="Allsum!" onclick="getTextInput()">
-            </div>
-            <div id="hash_text_output_div" onclick="copyToClipboard()">
-                <span id="hash_output_text">Test</span>
+                <select name="hash_type" id="hash_type">
+                    <!-- Use  this instead! https://codepen.io/STKNG/pen/GbVogZ-->
+                    <option value="md5">md5</option>
+                    <option value="sha1">sha-1</option>
+                    <option value="sha256">sha-256</option>
+                    <option value="sha512">sha-512</option>
+                    <option value="blake3">BLAKE-3</option>
+                    <option value="crc32">CRC-32</option>
+                </select>
+                <div id="submit_button_div">
+                    <input type="button" id="submit_button_text" value="Allsum!" onclick="getTextInput()">
+                </div>
             </div>
         </div>
-        <div class="lds-ripple"><div></div><div></div></div> 
-        <div class='float-message' id="float-message" hidden="">
-            <div class='float-message-inner'>
-              <a href="#!" onclick="document.getElementById('float-message').hidden = true;" class="close-link">X</a>
-                <p id="float-message-text">This is an error message</p>
-            </div>
-          </div>
-        <script src="./scripts.js"></script>
-    </body>
+        <div id="hash-input">
+        </div>
+        <div id="hash_text_output_div" onclick="copyToClipboard()">
+            <output id="hash_output_text">Test</output>
+        </div>
+    </div>
+    <div class='float-message' id="float-message" hidden="">
+        <div class='float-message-inner'>
+            <a href="#!" onclick="document.getElementById('float-message').hidden = true;" class="close-link">X</a>
+            <p id="float-message-text">This is an error message</p>
+        </div>
+    </div>
+    <script src="./scripts.js"></script>
+</body>
+
 </html>

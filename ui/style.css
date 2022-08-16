@@ -1,49 +1,114 @@
-body {
-    align-items: center;
-    text-align: center;
-    align-content: center;
+/*
+Primary: #0A0D1F //dark  blue
+Secondary #D33F49 
+Terciary # #D7C0D0
+Alert #EFF0D1
+Ok #77BA99
+Golden: rgb(179, 110, 27)
+light-golden: rgb(232, 230, 160)
+*/
 
-    /*transform: translateY(50%)*/;
+body {
+  color: white;
+  background-color: hsl(231deg, 50%, 8%);
+}
+
+#title {
+  text-align: center;
+  font-size: 6rem;
+  font-family: Times;
+  font-style: italic;
+  margin-bottom: 0;
+  color:#D33F49;
+  text-shadow: 2px 2px #E9B44C;
+}
+
+#hash-content {
+  position: relative;
+  text-align: center;
+  transform: translate(50%, 50%);
+  width: 700px;
+}
+
+#hash-input {
+  position: relative;
+  text-align: center;
+}
+#text-input-div{
+  position: relative;
+  text-align: center;
+  height: auto;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+#text_input{
+  min-width: 400;
+  height: 3rem;
+  font-size: 2rem;
+  padding-left: 1rem;
+  padding-bottom: 3px;
+  color: #ffff;
+  background-color: hsl(231, 47%, 24%);
+  border-radius: 20px;
+  border-color: transparent;
+  outline: solid;
+  outline-color: #D33F49 ;
+}
+#text_input::placeholder {
+  font-style: italic; 
+  font-size: 1.5rem
+}
+
+#empty_space_form {
+  height: 10;
 }
 
 #hash_output {
-    font-size: 20px;
-    font-weight: bold;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
 }
 
-#hash_text_output_div{
-    word-break: break-all;
+#hash_output span {
+  color: #ffffff;
+}
+
+#hash_text_output_div {
+  word-break: break-all;
 }
 
 /* FLOATNG MESSAGE: https://kruxor.com/view/code/GbiHX/floating-message-box-on-bottom-right-of-screen-with-close-button/#! */
 .float-message {
-	position:fixed;
-  	z-index:1001;
-  	max-width:400px;
-  	bottom:20px;
-  	right:20px;
-  	padding:30px;
-  	color:rgb(255, 255, 255);
-  	font-size:16px;
-  	border-radius:5px;
-  	background:rgb(133, 15, 15);
-  	box-shadow:0px 5px 10px rgba(0,0,0,0.5);
+  position: fixed;
+  z-index: 1001;
+  min-width: 300px;
+  max-width: 400px;
+  bottom: 20px;
+  right: 20px;
+  padding: 30px;
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+  border-radius: 5px;
+  background: rgb(133, 15, 15);
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.5);
 }
+
 .float-message-inner {
-	position:relative;
+  position: relative;
 }
+
 .close-link {
-	text-decoration:none;
-  	color:#ffffff;
-  	font-weight:bold;
-  	position:absolute;
-  	top:-30px;
-  	right:-15px;
-  	font-size:18px;
-    font-family: sans-serif
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+  position: absolute;
+  top: -30px;
+  right: -15px;
+  font-size: 18px;
+  font-family: sans-serif;
 }
+
 #float-message-text {
-    font-weight: bold;
-    font-family: Arial
-}
+  font-weight: bold;
+  font-family: Arial;
+}/*# sourceMappingURL=style.css.map */

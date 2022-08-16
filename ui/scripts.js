@@ -1,36 +1,39 @@
 // Global functions:
-function msgBox(msg, style) {
+function msgBox(msg, style, timer_ms = 5000) {
     const floating_box = document.getElementById('float-message');
     const floating_box_msg = document.getElementById('float-message-text');
-
+    function msgBoxStatus(isHidden){
+        floating_box.hidden = isHidden;
+    }
     floating_box_msg.innerHTML = msg;
-    floating_box.hidden = false;
+    msgBoxStatus(false)
     var colorBackground = ""
     switch (style) {
         case 'warn':
             colorBackground = "hsl(29, 97%, 37%)" // dark orange
             break
         case 'ok':
-            colorBackground = "hsl(127, 79%, 30%)" // dark green
+            colorBackground = "#77BA99" // dark green
             break
         default:
             colorBackground = "rgb(133, 15, 15)" // dark red
             break
     }
-    floating_box.style.background = colorBackground
+    floating_box.style.background = colorBackground;
+    setTimeout(function() {msgBoxStatus(true);}, timer_ms)
 }
-
-
 const invoke = window.__TAURI__.invoke
 function getTextInput(){
     const input_text = document.querySelector('#text_input').value
     const selected_algorithm = document.querySelector('#hash_type').value
-    const mode = document.querySelector('input[name="hash_mode"]:checked').value
-
-    console.log("Text submitted (js): ", input_text, selected_algorithm, mode)
-    console.log(typeof(mode))
-    invoke('text_hash_processing', {inputStr: input_text, hashType: selected_algorithm, mode: mode})
-    .then((output_hash) => document.getElementById('hash_output_text').innerHTML = output_hash)
+    const isFileModeOn = document.querySelector("#switch-button-checkbox").checked // Only testing. Should be remved or implemented on other way
+    console.log("Text submitted (js): ", input_text, selected_algorithm)
+    invoke('text_hash_processing', {inputStr: input_text, hashType: selected_algorithm, isFileModeOn: isFileModeOn})
+    .then((output_hash) => document.getElementById('hash_output_text').innerHTML = output_hash.hash)
+}
+function hashMode(){
+    let isFileModeOn = document.querySelector("#switch-button-checkbox") // false == text mode
+    console.log(typeof(isFileModeOn.checked), isFileModeOn.checked)
 }
 /*
 function getTimeElapsed(){
@@ -42,5 +45,5 @@ function copyToClipboard(){
     var copyText = document.getElementById('hash_output_text');
     navigator.clipboard.writeText(copyText.textContent);
     console.log(copyText.textContent)
-    document.getElementById('copied_msg').innerHTML = "Copied the Text!"
+    msgBox('Copied the text', 'ok', 2000)
 }

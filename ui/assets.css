@@ -1,5 +1,5 @@
 /* SWITCH BUTTON edited from: https://codepen.io/nikkk-me/pen/abvPjeG */
-.switch_button_container{
+.switch_button_container {
   position: relative;
   width: 100%;
   height: 43.5;
@@ -54,14 +54,14 @@
   padding: 10px 0;
   display: block;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   pointer-events: none;
 }
 .switch-button-checkbox + .switch-button-label:before {
   content: "";
-  background: #D33F49;
+  background: #d33f49;
   height: 100%;
   width: 100%;
   position: absolute;
@@ -90,12 +90,12 @@
   opacity: 1;
   border-radius: 50%;
   -webkit-animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
-          animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
 }
 
 .lds-ripple div:nth-child(2) {
   -webkit-animation-delay: -0.5s;
-          animation-delay: -0.5s;
+  animation-delay: -0.5s;
 }
 
 @-webkit-keyframes lds-ripple {

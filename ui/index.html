@@ -19,7 +19,10 @@
     <div id="hash_content_text">
         <div id="text-input-div">
             <label for="text_input"></label>
-            <input type="text" id="text_input" name="text_input" placeholder="Input your text to be hashed...">
+            <div class="input-container text" id="input-container">
+                <span id="input-file-msg" style="display: none;"> Drag file here or browse</span>
+                <input type="text" class="input text" id="text_input" name="text_input" placeholder="Input your text to be hashed..." multiple="false">
+            </div>
         </div>
         <div id="selector_div">
             <div id="selector_div_flex">

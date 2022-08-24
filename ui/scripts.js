@@ -45,12 +45,30 @@ function getTextInput() {
 }
 function hashMode() {
   let isFileModeOn = document.querySelector("#switch-button-checkbox"); // false == text mode
-  console.log(typeof isFileModeOn.checked, isFileModeOn.checked);
+  console.log(typeof isFileModeOn.checked, "Is file mode on?: ",isFileModeOn.checked);
+  const inputField = document.querySelector(".input");
+  const containerField = document.querySelector(".input-container");
+  let msgfileInputHidden = document.getElementById("input-file-msg");
+  if (isFileModeOn.checked){ // File Mode:
+    inputField.type = "file";
+    inputField.id = "file_input"
+    inputField.classList.remove('text'); inputField.classList.add('file');
+    containerField.classList.remove('text'); containerField.classList.add('file');
+    msgfileInputHidden.style.display = 'block'
+
+  } else { // Hash Mode:
+    inputField.type = "text";
+    inputField.id = "text_input"
+    inputField.classList.remove('file'); inputField.classList.add('text');
+    containerField.classList.remove('file'); containerField.classList.add('text');
+    msgfileInputHidden.style.display = 'none'
+  }
 }
 /*
 function getTimeElapsed(){
     const time_div = document.querySelector
 } */
+// File upload
 
 //MISC FUNCTIONS:
 function copyToClipboard() {

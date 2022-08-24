@@ -1,6 +1,6 @@
 /*
 Primary: #0A0D1F //dark  blue
-Secondary #D33F49 
+Secondary #D33F49 // red
 Terciary # #D7C0D0
 Alert #EFF0D1
 Ok #77BA99
@@ -21,6 +21,10 @@ body {
   margin-bottom: 0;
   color: #d33f49;
   text-shadow: 2px 2px #e9b44c;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 #hash-input {
@@ -28,22 +32,80 @@ body {
   text-align: center;
 }
 #text-input-div {
+  display:grid;
   position: relative;
   text-align: center;
   height: auto;
   margin-top: 1%;
   margin-bottom: 1%;
+  /*! justify-content: center; */
+  justify-items: center;
+  /*! align-self: center; */
 }
-#text_input {
+.input{
   min-width: 400;
-  height: 3rem;
-  font-size: 2rem;
   padding-left: 1rem;
   padding-bottom: 3px;
   color: #ffff;
   background-color: hsl(231, 47%, 24%);
   border-radius: 20px;
   border-color: transparent;
+  transition: all 0.2s ease-in, font-size 0s linear, opacity 0s linear;
+}
+.input.file{
+  opacity: 0% ;
+  min-width: 500;
+  height: 13rem;
+  font-size: 1rem;
+  text-align: center;
+  outline: 2px dashed #D33F49;
+  outline-offset: -10px;
+  padding-left: 0;
+}
+.input.file::file-selector-button{
+  position: relative;
+  scale:461%;
+  width:20%;
+  /*! appearance: none; */
+  /*! background-color: #20295a; */
+  /*! border-radius: 10px; */
+  /*! border-color: transparent; */
+  top: 45%;
+  left: 18%;
+  /*! color: white; */
+  
+}
+.input-container.file{
+  transition: all 0.2s ease-in;
+  background-color: #20295a;
+  width:30%;
+  outline: 2px dashed #D33F49;
+  outline-offset: -10px;
+  border-radius: 30px;
+}
+.input-container.file:before{
+  position: absolute;
+  width:35%;
+  height:96%;
+  
+  background-color: #20295a;
+  outline: 2px dashed #D33F49;
+  outline-offset: -10px;
+}
+#input-file-msg{
+  position: absolute;
+  font-size: 2.2vw;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: lighter;
+  top:40.4%;
+  left:38.5%;
+}
+#file_input:before{
+  
+}
+.input.text{
+  height: 3rem;
+  font-size: 2rem;
 }
 
 #text_input::hover {

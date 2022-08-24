@@ -38,7 +38,7 @@ pub fn allsum_blake3(blake3_input: &[u8]) -> String {
     format!("{}", result.to_hex())
 }
   
-pub fn allsum_md5(md5_input: &[u8]) -> String{
+pub fn allsum_md5(md5_input: &[u8]) -> String{ // For some reason, this website is wrong and it's at the first search result in google if you search "md5 online" https://www.md5.cz/ 
     eprintln!("Generating md5 output...");
     let digest = md5::compute(md5_input);
     format!("{:x}", digest)

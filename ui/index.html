@@ -21,7 +21,7 @@
             <label for="text_input"></label>
             <div class="input-container text" id="input-container">
                 <span id="input-file-msg" style="display: none;"> Drag file here or browse</span>
-                <input type="text" class="input text" id="text_input" name="text_input" placeholder="Input your text to be hashed..." multiple="false">
+                <input type="text" class="input text" id="text_input" name="text_input" placeholder="Input your text to be hashed..." multiple="false" onformchange="inputProcess();">
             </div>
         </div>
         <div id="selector_div">
@@ -33,11 +33,14 @@
                 <select name="hash_type" id="hash_type">
                     <!-- Use  this instead! https://codepen.io/STKNG/pen/GbVogZ-->
                     <option value="md5">md5</option>
-                    <option value="sha1">sha-1</option>
-                    <option value="sha256">sha-256</option>
-                    <option value="sha512">sha-512</option>
+                    <optgroup label="sha" >
+                        <option value="sha1">sha-1</option>
+                        <option value="sha256">sha-256</option>
+                        <option value="sha512">sha-512</option>
+                    </optgroup>
                     <option value="blake3">BLAKE-3</option>
                     <option value="crc32">CRC-32</option>
+                    <option value="whirlpool">WhirlPool</option>
                 </select>
                 <div id="submit_button_div">
                     <input type="button" id="submit_button_text" value="Allsum!" onclick="getTextInput()">

@@ -20,11 +20,14 @@ serde = { version = "1.0", features = ["derive"] }
 tauri = { version = "1.0.5", features = ["api-all"] }
 
 # Custom dependencies
+
+# Hashes:
 md5 = "0.7.0" # MIT
 sha-1 = "0.10.0" # MT
 sha2 = "0.10.2" # MIT
 blake3 = "1.3.1" # CCO
 crc32fast = "1.3.2" # MIT
+whirlpool = "0.10.1" # MIT 
 
 [features]
 # by default Tauri runs in production mode

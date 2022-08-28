@@ -3,7 +3,10 @@ use sha1::{self, Sha1};
 use sha2::{Sha256, Sha512, Digest};
 use blake3;
 use crc32fast;
+use whirlpool;
 
+//  All algorithms are inside this list: https://github.com/RustCrypto/hashes
+// There are some algorithms, such us BLAKE 3 that aren't in this list
 pub fn allsum_crc32(crc32_input: &[u8]) -> String {
     let mut hasher = crc32fast::Hasher::new();
     hasher.update(crc32_input);
@@ -42,4 +45,11 @@ pub fn allsum_md5(md5_input: &[u8]) -> String{ // For some reason, this website 
     eprintln!("Generating md5 output...");
     let digest = md5::compute(md5_input);
     format!("{:x}", digest)
+}
+pub fn allsum_whirpool(whirlpool_input: &[u8]) -> String {
+    eprintln!("Generating whirpool output");
+    let mut hasher = whirlpool::Whirlpool::new();
+    hasher.update(whirlpool_input);
+    let result = hasher.finalize();
+    format!("{:x}", result)
 }

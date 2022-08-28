@@ -64,6 +64,9 @@ function hashMode() {
     msgfileInputHidden.style.display = 'none'
   }
 }
+function inputProcess(){
+  console.log("INPUTPROCESS CALLED");
+}
 /*
 function getTimeElapsed(){
     const time_div = document.querySelector

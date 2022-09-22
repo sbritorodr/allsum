@@ -77,24 +77,7 @@ function inputProcess(){
   var output = reader.readAsBinaryString(file);
   console.log('Output bytes: \n', output);
 }
-import {open} from '@tauri-apps/api/dialog';
-async function inputFileProcess(){
-  console.log("Processing file");
-  
 
-  const selected = await open({
-    multiple: false,
-    filters: [{
-      // Any filter should go here
-    }],
-  })
-  if (selected == null){ // User cancelled the dialog
-    console.log("Open file dialog cancelled by user")
-
-  } else {
-    console.log("Selected: ", selected);
-  }
-}
 /*
 function getTimeElapsed(){
     const time_div = document.querySelector

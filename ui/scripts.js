@@ -50,15 +50,15 @@ function hashMode() {
   const containerField = document.querySelector(".input-container");
   let msgfileInputHidden = document.getElementById("input-file-msg");
   if (isFileModeOn.checked){ // File Mode:
-    inputField.type = "file";
-    inputField.id = "file_input"
+    inputField.type = "file"; //changes the html to display only the file option dinamically
+    inputField.id = "file_input";
     inputField.classList.remove('text'); inputField.classList.add('file');
     containerField.classList.remove('text'); containerField.classList.add('file');
     msgfileInputHidden.style.display = 'block'
 
   } else { // Hash Mode:
     inputField.type = "text";
-    inputField.id = "text_input"
+    inputField.id = "text_input";
     inputField.classList.remove('file'); inputField.classList.add('text');
     containerField.classList.remove('file'); containerField.classList.add('text');
     msgfileInputHidden.style.display = 'none'
@@ -66,6 +66,17 @@ function hashMode() {
 }
 function inputProcess(){
   console.log("INPUTPROCESS CALLED");
+  var file = document.getElementById('file_input').files[0];
+  console.log(file.name);
+  var path = file.target.value;
+  console.log('path:', path);
+  const reader = new FileReader();
+  /*reader.addEventListener('load', (event) => {
+    file.src = event.target.result;
+  });*/
+  var output = reader.readAsBinaryString(file);
+  console.log('Output bytes: \n', output);
+
 }
 /*
 function getTimeElapsed(){

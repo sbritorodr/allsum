@@ -91,3 +91,23 @@ function copyToClipboard() {
   console.log(copyText.textContent);
   msgBox("Copied the text", "ok", 2000);
 }
+
+
+const open = window.__TAURI__.dialog.open;
+const message = window.__TAURI__.dialog.message;
+
+async function inputFileProcess(){
+  console.log("Processing file");
+  
+
+  const selected = await open({
+    multiple: false,
+    
+  });
+  if (selected == null){ // User cancelled the dialog
+    console.log("Open file dialog cancelled by user")
+
+  } else {
+    console.log("Selected: ", selected);
+  }
+};

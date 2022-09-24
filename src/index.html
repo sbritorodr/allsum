@@ -4,10 +4,10 @@
     <Title>Allsum</Title>
     <link rel="stylesheet" href="assets.css">
     <link rel="stylesheet" href="style.css">
+    <script type="module" async src="modules.js"></script>
 </head>
 
 <body>
-    <script type="module" async src="modules.js"></script>
     <h1 id="Title">Allsum!</h1>
     <div class="switch_button_container">
         <div class="switch-button">
@@ -54,7 +54,7 @@
             <output id="hash_output_text"></output>
         </div>
     </div>
-    <button onclick="inputFileProcess();">Whoosh</button>
+    <button onclick='inputFileProcess()'>Whoosh</button>
     <div class='float-message' id="float-message" hidden="">
         <div class='float-message-inner'>
             <a href="#!" onclick="document.getElementById('float-message').hidden = true;" class="close-link">X</a>
@@ -62,6 +62,7 @@
         </div>
     </div>
     <script src="./scripts.js"></script>
+    
 </body>
 
 </html>

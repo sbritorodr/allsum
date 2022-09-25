@@ -1,7 +1,7 @@
 /*
 Primary: #0A0D1F //dark  blue
 Secondary #D33F49 // red
-Terciary # #D7C0D0
+Terciary  #D7C0D0
 Alert #EFF0D1
 Ok #77BA99
 Golden: rgb(179, 110, 27)
@@ -106,9 +106,6 @@ body {
   left:38.5%;
   max-width: 23vw;
 }
-#file_input:before{
-  
-}
 .input.text{
   height: 3rem;
   font-size: 2rem;
@@ -124,7 +121,26 @@ body {
   font-style: italic;
   font-size: 1.5rem;
 }
-#selector_div {
+
+.donate_div{
+  position: fixed;
+  background-color: #D33F49;
+  top: 0;
+  right: 0;
+  padding: 10px
+}
+.donate_div span{
+  position: relative;
+  top: -8px;
+  padding: 0px 5px 5px 5px;
+  font-size: 1.1rem;
+  font-family: Verdana
+}
+.donate_div img{
+  top: 20px;
+  height: 30px;
+  padding: 0px 0px 0px 10px;
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(278deg) brightness(103%) contrast(102%); /* Thanks to https://codepen.io/sosuke/pen/Pjoqqp */
 }
 #selector_div_flex {
   display: flex;

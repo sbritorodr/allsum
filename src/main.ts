@@ -9,6 +9,9 @@ async function getSystemInfo(){
 
 }
 // Global functions:
+async function openLink(link:string){
+  await window.__TAURI__.shell.open(link)
+}
 function msgBox(msg:string, style:string, timer_ms = 5000) {
   const floating_box = document.getElementById("float-message");
   const floating_box_msg = document.getElementById("float-message-text");

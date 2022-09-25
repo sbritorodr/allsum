@@ -11,6 +11,7 @@ use file::readFilefromPath;
 mod file;
 mod algorithms;
 use algorithms::*;
+use tauri_plugin_fs_extra::FsExtra;
 
 #[derive(Serialize)] // Tauri for some reason™️ gives me a strange error if I don't add this.
 struct OutputToJS { // Tauri official guide really has the worst beginner documentation 
@@ -51,6 +52,7 @@ fn bytes_hash_processing(input: &[u8], hashType: &str) -> OutputToJS { //Separat
 fn main() {
   tauri::Builder::default()
     .invoke_handler(tauri::generate_handler![text_hash_processing]) //add all used commands here to communicate to js
+    .plugin(FsExtra::default()) 
     .run(tauri::generate_context!())
     .expect("error while running tauri application");
 }

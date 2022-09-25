@@ -2,8 +2,8 @@
 
 <head>
     <Title>Allsum</Title>
-    <link rel="stylesheet" href="assets.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./src/assets.css">
+    <link rel="stylesheet" href="./src/style.css">
 </head>
 
 <body>
@@ -21,7 +21,7 @@
             <label for="text_input"></label>
             <div class="input-container text" id="input-container">
                 <span id="input-file-msg" style="display: none;"> Drag file here or click to browse</span>
-                <input type="text" class="input text" id="text_input" name="text_input" placeholder="Input your text to be hashed..." multiple="false" oninput="inputProcess();">
+                <input type="text" class="input text" id="text_input" name="text_input" placeholder="Input your text to be hashed..." multiple="false" >
             </div>
         </div>
         <div id="selector_div">
@@ -59,7 +59,8 @@
             <p id="float-message-text">This is an error message</p>
         </div>
     </div>
-    <script src="./scripts.js"></script>
+    <script src="./src/main.ts"></script>
+    
     
 </body>
 

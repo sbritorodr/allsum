@@ -1,3 +1,4 @@
+
 // System Info:
 const os = window.__TAURI__.os;
 async function getSystemInfo(){
@@ -35,7 +36,7 @@ function msgBox(msg:string, style:string, timer_ms = 5000) {
   }, timer_ms);
 }
 const invoke = window.__TAURI__.invoke;
-function getTextInput() {
+ function getTextInput() {
   document.getElementsByClassName("lds-ripple")[0].setAttribute("style", "display: block;" );
   const input_text = (document.querySelector("#text_input")! as HTMLInputElement).value;
   const selected_algorithm = (document.querySelector("#hash_type")! as HTMLInputElement).value;
@@ -50,9 +51,8 @@ function getTextInput() {
     (output_hash) =>
       (document.getElementById("hash_output_text")!.innerHTML = output_hash.hash)
   );
-  (document.querySelectorAll(".lds-ripple")[0]!).setAttribute("style", "display:none;");
 }
-function hashMode() {
+ function hashMode() {
   let isFileModeOn = document.querySelector("#switch-button-checkbox")! as HTMLInputElement; // false == text mode
   console.log(typeof isFileModeOn.checked, "Is file mode on?: ",isFileModeOn.checked);
   const inputField = document.querySelector(".input")! as HTMLInputElement;
@@ -81,7 +81,7 @@ function hashMode() {
 /// OPEN DIALOG AND SEND BYTES TO RUST:
 //const open = window.__TAURI__.dialog.open;
 const readBinaryFile = window.__TAURI__.fs.readBinaryFile;
-async function inputFileProcess(){
+ async function inputFileProcess(){
   console.log("Processing file");
   let selected = await window.__TAURI__.dialog.open({
     multiple: false,
@@ -117,11 +117,23 @@ async function inputFileProcess(){
     return
   }
   msgBox("File Readed!", "ok"); // This is just a dummy. In future versions I'll work better on the frontend
-  console.log("FILE IN BINARY: ", fileContentInBinary);
+  
+  /*let fileMetadata = await metadata(selectedPathString);
+  console.log("METADATA: ", fileMetadata)*/
+  const selected_algorithm = (document.querySelector("#hash_type")! as HTMLInputElement).value;
+  const isFileModeOn = (document.querySelector("#switch-button-checkbox")! as HTMLInputElement).checked; // Only testing. Should be remved or implemented on other way
+  invoke("text_hash_processing", {
+    inputStr: selectedPathString,
+    hashType: selected_algorithm,
+    isFileModeOn: isFileModeOn,
+  }).then(
+    (output_hash) =>
+      (document.getElementById("hash_output_text")!.innerHTML = output_hash.hash)
+  );
 };
 
 //MISC FUNCTIONS:
-function copyToClipboard() {
+ function copyToClipboard() {
   var copyText = document.getElementById("hash_output_text")!;
   if (copyText != null){
 

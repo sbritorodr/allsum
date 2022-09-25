@@ -58,8 +58,9 @@ body {
   height: 13rem;
   font-size: 1rem;
   text-align: center;
-  outline: 2px dashed #D33F49;
-  outline-offset: -10px;
+  /*outline: 2px dashed #D33F49;
+  outline-offset: -10px;*/
+  box-shadow: 2px #D33F49;
   padding-left: 0;
 }
 .input.file::file-selector-button{
@@ -80,7 +81,10 @@ body {
   background-color: #20295a;
   width:30%;
   outline: 2px dashed #D33F49;
-  outline-offset: -10px;
+  outline-offset: -20px; /* I'd like to be -10px, but in webkit doesn't work.
+                            The bug is even reported 14 years ago and is still
+                            unresolved... 
+                            https://bugs.webkit.org/show_bug.cgi?id=20807*/
   border-radius: 30px;
 }
 .input-container.file:before{
@@ -90,15 +94,17 @@ body {
   
   background-color: #20295a;
   outline: 2px dashed #D33F49;
-  outline-offset: -10px;
+  outline-offset: -20px;
 }
 #input-file-msg{
   position: absolute;
   font-size: 2.2vw;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-weight: lighter;
+  word-wrap: normal;
   top:40.4%;
   left:38.5%;
+  max-width: 23vw;
 }
 #file_input:before{
   

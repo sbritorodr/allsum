@@ -4,7 +4,6 @@
     <Title>Allsum</Title>
     <link rel="stylesheet" href="assets.css">
     <link rel="stylesheet" href="style.css">
-    <script type="module" async src="./modules.js"></script>
 </head>
 
 <body>
@@ -21,7 +20,7 @@
         <div id="text-input-div">
             <label for="text_input"></label>
             <div class="input-container text" id="input-container">
-                <span id="input-file-msg" style="display: none;"> Drag file here or browse</span>
+                <span id="input-file-msg" style="display: none;"> Drag file here or click to browse</span>
                 <input type="text" class="input text" id="text_input" name="text_input" placeholder="Input your text to be hashed..." multiple="false" oninput="inputProcess();">
             </div>
         </div>
@@ -54,7 +53,6 @@
             <output id="hash_output_text"></output>
         </div>
     </div>
-    <button onclick='inputFileProcess();'>Open</button>
     <div class='float-message' id="float-message" hidden="">
         <div class='float-message-inner'>
             <a href="#!" onclick="document.getElementById('float-message').hidden = true;" class="close-link">X</a>

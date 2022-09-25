@@ -2,8 +2,8 @@
 
 <head>
     <Title>Allsum</Title>
-    <link rel="stylesheet" href="assets.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./src/assets.css">
+    <link rel="stylesheet" href="./src/style.css">
 </head>
 
 <body>
@@ -16,10 +16,17 @@
             <label class="switch-button-label" for=""><span class="switch-button-label-span">Text</span></label>
         </div>
     </div>
+    <div class="donate_div" onclick="openLink('https://ko-fi.com/sbritorodr')">
+        <img src="./src/assets/donate.svg" alt="donate icon">
+        <span>Donate!</span>
+    </div>
     <div id="hash_content_text">
         <div id="text-input-div">
             <label for="text_input"></label>
-            <input type="text" id="text_input" name="text_input" placeholder="Input your text to be hashed...">
+            <div class="input-container text" id="input-container">
+                <span id="input-file-msg" style="display: none;"> Drag file here or click to browse</span>
+                <input type="text" class="input text" id="text_input" name="text_input" placeholder="Input your text to be hashed..." multiple="false" >
+            </div>
         </div>
         <div id="selector_div">
             <div id="selector_div_flex">
@@ -30,11 +37,14 @@
                 <select name="hash_type" id="hash_type">
                     <!-- Use  this instead! https://codepen.io/STKNG/pen/GbVogZ-->
                     <option value="md5">md5</option>
-                    <option value="sha1">sha-1</option>
-                    <option value="sha256">sha-256</option>
-                    <option value="sha512">sha-512</option>
+                    <optgroup label="sha" >
+                        <option value="sha1">sha-1</option>
+                        <option value="sha256">sha-256</option>
+                        <option value="sha512">sha-512</option>
+                    </optgroup>
                     <option value="blake3">BLAKE-3</option>
                     <option value="crc32">CRC-32</option>
+                    <option value="whirlpool">WhirlPool</option>
                 </select>
                 <div id="submit_button_div">
                     <input type="button" id="submit_button_text" value="Allsum!" onclick="getTextInput()">
@@ -53,7 +63,9 @@
             <p id="float-message-text">This is an error message</p>
         </div>
     </div>
-    <script src="./scripts.js"></script>
+    <script src="./src/main.ts"></script>
+    
+    
 </body>
 
 </html>

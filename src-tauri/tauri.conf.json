@@ -1,9 +1,9 @@
 {
   "build": {
-    "beforeBuildCommand": "",
-    "beforeDevCommand": "",
-    "devPath": "./ui",
-    "distDir": "./ui",
+    "beforeDevCommand": "pnpm dev",
+    "beforeBuildCommand": "pnpm build",
+    "devPath": "http://localhost:1420",
+    "distDir": "http://localhost:1420",
     "withGlobalTauri": true
   },
   "package": {
@@ -12,7 +12,29 @@
   },
   "tauri": {
     "allowlist": {
-      "all": true
+      "all": true,
+      "dialog":{
+        "open":true
+      },
+      "fs":{
+        "all": false,
+        "copyFile": false,
+        "createDir": false,
+        "exists": false,
+        "readDir": false,
+        "readFile": true,
+        "removeDir": false,
+        "removeFile": false,
+        "renameFile": false,
+        "scope": [],
+        "writeFile": false
+      },
+      "os": {
+        "all": true
+      },
+      "shell": {
+        "open":true
+      }
     },
     "bundle": {
       "active": true,
@@ -61,8 +83,8 @@
         "title": "Allsum!",
         "center": true,
         "width": 800,
-        "minWidth": 595,
-        "minHeight": 485
+        "minWidth": 881,
+        "minHeight": 540
       }
     ]
   }

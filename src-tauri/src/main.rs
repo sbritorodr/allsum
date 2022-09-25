@@ -11,6 +11,7 @@ use file::readFilefromPath;
 mod file;
 mod algorithms;
 use algorithms::*;
+use tauri_plugin_fs_extra::FsExtra;
 
 #[derive(Serialize)] // Tauri for some reason™️ gives me a strange error if I don't add this.
 struct OutputToJS { // Tauri official guide really has the worst beginner documentation 
@@ -40,6 +41,7 @@ fn bytes_hash_processing(input: &[u8], hashType: &str) -> OutputToJS { //Separat
     "sha512" => allsum_sha512(input),
     "blake3" => allsum_blake3(input),
     "crc32" => allsum_crc32(input),
+    "whirlpool" => allsum_whirpool(input),
     _ => format!("Hash type '{}' is not avaliable", hashType)
   };
   let time_elapsed_ms:String = now.elapsed().as_millis().to_string(); //needs to be a string. JavaScript doesn't support u128
@@ -50,6 +52,7 @@ fn bytes_hash_processing(input: &[u8], hashType: &str) -> OutputToJS { //Separat
 fn main() {
   tauri::Builder::default()
     .invoke_handler(tauri::generate_handler![text_hash_processing]) //add all used commands here to communicate to js
+    .plugin(FsExtra::default()) 
     .run(tauri::generate_context!())
     .expect("error while running tauri application");
 }

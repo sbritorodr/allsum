@@ -1,7 +1,7 @@
 /*
 Primary: #0A0D1F //dark  blue
-Secondary #D33F49 
-Terciary # #D7C0D0
+Secondary #D33F49 // red
+Terciary  #D7C0D0
 Alert #EFF0D1
 Ok #77BA99
 Golden: rgb(179, 110, 27)
@@ -21,6 +21,10 @@ body {
   margin-bottom: 0;
   color: #d33f49;
   text-shadow: 2px 2px #e9b44c;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 #hash-input {
@@ -28,22 +32,83 @@ body {
   text-align: center;
 }
 #text-input-div {
+  display:grid;
   position: relative;
   text-align: center;
   height: auto;
   margin-top: 1%;
   margin-bottom: 1%;
+  /*! justify-content: center; */
+  justify-items: center;
+  /*! align-self: center; */
 }
-#text_input {
+.input{
   min-width: 400;
-  height: 3rem;
-  font-size: 2rem;
   padding-left: 1rem;
   padding-bottom: 3px;
   color: #ffff;
   background-color: hsl(231, 47%, 24%);
   border-radius: 20px;
   border-color: transparent;
+  transition: all 0.2s ease-in, font-size 0s linear, opacity 0s linear;
+}
+.input.file{
+  opacity: 0% ;
+  min-width: 500;
+  height: 13rem;
+  font-size: 1rem;
+  text-align: center;
+  /*outline: 2px dashed #D33F49;
+  outline-offset: -10px;*/
+  box-shadow: 2px #D33F49;
+  padding-left: 0;
+}
+.input.file::file-selector-button{
+  position: relative;
+  scale:461%;
+  width:20%;
+  /*! appearance: none; */
+  /*! background-color: #20295a; */
+  /*! border-radius: 10px; */
+  /*! border-color: transparent; */
+  top: 45%;
+  left: 18%;
+  /*! color: white; */
+  
+}
+.input-container.file{
+  transition: all 0.2s ease-in;
+  background-color: #20295a;
+  width:30%;
+  outline: 2px dashed #D33F49;
+  outline-offset: -20px; /* I'd like to be -10px, but in webkit doesn't work.
+                            The bug is even reported 14 years ago and is still
+                            unresolved... 
+                            https://bugs.webkit.org/show_bug.cgi?id=20807*/
+  border-radius: 30px;
+}
+.input-container.file:before{
+  position: absolute;
+  width:35%;
+  height:96%;
+  
+  background-color: #20295a;
+  outline: 2px dashed #D33F49;
+  outline-offset: -20px;
+}
+#input-file-msg{
+  position: absolute;
+  font-size: 2.2vw;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: lighter;
+  word-wrap: normal;
+  top:40.4%;
+  left:38.5%;
+  max-width: 23vw;
+}
+.input.text{
+  height: 3rem;
+  font-size: 2rem;
 }
 
 #text_input::hover {
@@ -56,7 +121,26 @@ body {
   font-style: italic;
   font-size: 1.5rem;
 }
-#selector_div {
+
+.donate_div{
+  position: fixed;
+  background-color: #D33F49;
+  top: 0;
+  right: 0;
+  padding: 10px
+}
+.donate_div span{
+  position: relative;
+  top: -8px;
+  padding: 0px 5px 5px 5px;
+  font-size: 1.1rem;
+  font-family: Verdana
+}
+.donate_div img{
+  top: 20px;
+  height: 30px;
+  padding: 0px 0px 0px 10px;
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(278deg) brightness(103%) contrast(102%); /* Thanks to https://codepen.io/sosuke/pen/Pjoqqp */
 }
 #selector_div_flex {
   display: flex;

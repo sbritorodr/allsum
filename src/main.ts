@@ -51,7 +51,6 @@ const invoke = window.__TAURI__.invoke;
     isFileModeOn: isFileModeOn,
   }).then(
     (output_hash) =>
-    // @ts-ignore
       (document.getElementById("hash_output_text")!.innerHTML = output_hash.hash)
   );
 }
@@ -131,7 +130,6 @@ const readBinaryFile = window.__TAURI__.fs.readBinaryFile;
     isFileModeOn: isFileModeOn,
   }).then(
     (output_hash) =>
-    // @ts-ignore
       (document.getElementById("hash_output_text")!.innerHTML = output_hash.hash)
   );
 };

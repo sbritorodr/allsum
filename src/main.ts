@@ -45,13 +45,13 @@ const invoke = window.__TAURI__.invoke;
   const selected_algorithm = (document.querySelector("#hash_type")! as HTMLInputElement).value;
   const isFileModeOn = (document.querySelector("#switch-button-checkbox")! as HTMLInputElement).checked; // Only testing. Should be remved or implemented on other way
   console.log("Text submitted (js): ", input_text, selected_algorithm);
-  
   invoke("text_hash_processing", {
     inputStr: input_text,
     hashType: selected_algorithm,
     isFileModeOn: isFileModeOn,
   }).then(
     (output_hash) =>
+    // @ts-ignore
       (document.getElementById("hash_output_text")!.innerHTML = output_hash.hash)
   );
 }
@@ -131,6 +131,7 @@ const readBinaryFile = window.__TAURI__.fs.readBinaryFile;
     isFileModeOn: isFileModeOn,
   }).then(
     (output_hash) =>
+    // @ts-ignore
       (document.getElementById("hash_output_text")!.innerHTML = output_hash.hash)
   );
 };

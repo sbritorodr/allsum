@@ -6,15 +6,24 @@
 // For some reason™️, tauri converts variables from snake_case to camelCase, creating an error of unused keys
 
 use std::time::{Instant};
-use serde::Serialize; //by looking at .toml, serde_json is enabled
+use serde::{Serialize, Deserialize}; //by looking at .toml, serde_json is enabled
 use file::readFilefromPath;
 mod file;
 mod algorithms;
 use algorithms::*;
 use tauri_plugin_fs_extra::FsExtra;
+use wasm_typescript_definition::TypescriptDefinition;
+use wasm_bindgen::prelude::wasm_bindgen;
 
-#[derive(Serialize)] // Tauri for some reason™️ gives me a strange error if I don't add this.
+#[derive(TypescriptDefinition, Serialize, Deserialize)] 
+#[serde(tag = "tag", content = "fields")]
+enum OutputHash{
+  Hash(String)
+}
+// Tauri for some reason™️ gives me a strange error if I don't add this.
+#[derive(Serialize)]
 struct OutputToJS { // Tauri official guide really has the worst beginner documentation 
+
   hash: String,     // I've ever seen. (I still think Tauri is a wonderful api)
   etime: String
 } // This struct will help me to "Store" in a cstruct all the output all the "hash backend" is

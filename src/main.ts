@@ -1,4 +1,4 @@
-
+import { OutputHash } from "./vite-env";
 // System Info:
 const os = window.__TAURI__.os;
 async function getSystemInfo(){
@@ -9,7 +9,7 @@ async function getSystemInfo(){
 
 }
 // Global functions:
-async function openLink(link:string){
+export async function openLink(link:string){
   await window.__TAURI__.shell.open(link)
 }
 function msgBox(msg:string, style:string, timer_ms = 5000) {
@@ -51,8 +51,8 @@ const invoke = window.__TAURI__.invoke;
     hashType: selected_algorithm,
     isFileModeOn: isFileModeOn,
   }).then(
-    (output_hash) =>
-      (document.getElementById("hash_output_text")!.innerHTML = output_hash.hash)
+    (output_hash:OutputHash) =>
+      (document.getElementById("hash_output_text")!.innerHTML = output_hash.Hash)
   );
 }
  function hashMode() {
@@ -125,6 +125,7 @@ const readBinaryFile = window.__TAURI__.fs.readBinaryFile;
   console.log("METADATA: ", fileMetadata)*/
   const selected_algorithm = (document.querySelector("#hash_type")! as HTMLInputElement).value;
   const isFileModeOn = (document.querySelector("#switch-button-checkbox")! as HTMLInputElement).checked; // Only testing. Should be remved or implemented on other way
+
   invoke("text_hash_processing", {
     inputStr: selectedPathString,
     hashType: selected_algorithm,

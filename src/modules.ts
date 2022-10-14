@@ -1,7 +1,7 @@
 import {metadata} from 'tauri-plugin-fs-extra-api';
-const invoke = window.__TAURI__.invoke;
+/*const invoke = window.__TAURI__.invoke;*/
 import {msgBox} from './main'
-export function getTextInput() {
+/*export function getTextInput() {
     document.getElementsByClassName("lds-ripple")[0].setAttribute("style", "display: block;" );
     const input_text = (document.querySelector("#text_input")! as HTMLInputElement).value;
     const selected_algorithm = (document.querySelector("#hash_type")! as HTMLInputElement).value;
@@ -17,7 +17,7 @@ export function getTextInput() {
         (document.getElementById("hash_output_text")!.innerHTML = output_hash.hash)
     );
     (document.querySelectorAll(".lds-ripple")[0]!).setAttribute("style", "display:none;");
-}
+}*/
 export function hashMode() {
     let isFileModeOn = document.querySelector("#switch-button-checkbox")! as HTMLInputElement; // false == text mode
     console.log(typeof isFileModeOn.checked, "Is file mode on?: ",isFileModeOn.checked);

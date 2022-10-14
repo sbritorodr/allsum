@@ -1,4 +1,7 @@
-import { OutputHash } from "./vite-env";
+// main.ts
+// Disabled "unused vars and functions. Check tsconfig.json file for more"
+
+import { invoke } from "@tauri-apps/api/tauri";
 // System Info:
 const os = window.__TAURI__.os;
 async function getSystemInfo(){
@@ -8,11 +11,20 @@ async function getSystemInfo(){
   console.log("SYSTEM INFORMATION:\nPlatform Name: ", platformName, "\nOsType: ", osType);
 
 }
+// addEventListener
+let hashModeButton = document.getElementById('switch-button-checkbox');
+let getTextInputButton = document.getElementById('submit_button_text');
+let copyToClipboardAction = document.getElementById('hash_text_output_div');
+
+hashModeButton?.addEventListener("click", hashMode);
+getTextInputButton?.addEventListener("click", getTextInput);
+copyToClipboardAction?.addEventListener("click", copyToClipboard);
+
 // Global functions:
 export async function openLink(link:string){
   await window.__TAURI__.shell.open(link)
 }
-function msgBox(msg:string, style:string, timer_ms = 5000) {
+export function msgBox(msg:string, style:string, timer_ms = 5000) {
   const floating_box = document.getElementById("float-message");
   const floating_box_msg = document.getElementById("float-message-text");
   function msgBoxStatus(isHidden:boolean) {
@@ -38,24 +50,21 @@ function msgBox(msg:string, style:string, timer_ms = 5000) {
     msgBoxStatus(true);
   }, timer_ms);
 }
-const invoke = window.__TAURI__.invoke;
- function getTextInput() {
+
+export async function getTextInput() {
   document.getElementsByClassName("lds-ripple")[0].setAttribute("style", "display: block;" );
   const input_text = (document.querySelector("#text_input")! as HTMLInputElement).value;
   const selected_algorithm = (document.querySelector("#hash_type")! as HTMLInputElement).value;
   const isFileModeOn = (document.querySelector("#switch-button-checkbox")! as HTMLInputElement).checked; // Only testing. Should be remved or implemented on other way
   console.log("Text submitted (js): ", input_text, selected_algorithm);
-  
-  invoke("text_hash_processing", {
+
+  document.getElementById("hash_output_text")!.innerHTML = await invoke("text_hash_processing", {
     inputStr: input_text,
     hashType: selected_algorithm,
     isFileModeOn: isFileModeOn,
-  }).then(
-    (output_hash:OutputHash) =>
-      (document.getElementById("hash_output_text")!.innerHTML = output_hash.Hash)
-  );
+  });
 }
- function hashMode() {
+export function hashMode() {
   let isFileModeOn = document.querySelector("#switch-button-checkbox")! as HTMLInputElement; // false == text mode
   console.log(typeof isFileModeOn.checked, "Is file mode on?: ",isFileModeOn.checked);
   const inputField = document.querySelector(".input")! as HTMLInputElement;
@@ -64,7 +73,10 @@ const invoke = window.__TAURI__.invoke;
   if (isFileModeOn.checked){ // File Mode:
     inputField.type = "button"; //changes the html to display only the file option dinamically
     inputField.id = "file_input";
-    inputField.setAttribute("onclick", "inputFileProcess();") //Add the "open file" dialog function declared later
+    /*inputField.setAttribute("onclick", "inputFileProcess();")*/ //Add the "open file" dialog function declared later
+    let inputFileProcessAction = document.getElementById('file_input');
+    inputFileProcessAction?.addEventListener("click", inputFileProcess);
+
     inputField.classList.remove('text'); inputField.classList.add('file');
     containerField.classList.remove('text'); containerField.classList.add('file');
     msgfileInputHidden.style.display = 'block'
@@ -72,10 +84,10 @@ const invoke = window.__TAURI__.invoke;
   } else { // Text Mode:
     inputField.type = "text";
     inputField.id = "text_input";
-    inputField.removeAttribute('onclick');
     inputField.classList.remove('file'); inputField.classList.add('text');
     containerField.classList.remove('file'); containerField.classList.add('text');
     msgfileInputHidden.style.display = 'none'
+    document.getElementById('text_input')?.removeEventListener("click", inputFileProcess);
   }
 }
 
@@ -84,7 +96,7 @@ const invoke = window.__TAURI__.invoke;
 /// OPEN DIALOG AND SEND BYTES TO RUST:
 //const open = window.__TAURI__.dialog.open;
 const readBinaryFile = window.__TAURI__.fs.readBinaryFile;
- async function inputFileProcess(){
+export async function inputFileProcess(){
   console.log("Processing file");
   let selected = await window.__TAURI__.dialog.open({
     multiple: false,
@@ -126,18 +138,17 @@ const readBinaryFile = window.__TAURI__.fs.readBinaryFile;
   const selected_algorithm = (document.querySelector("#hash_type")! as HTMLInputElement).value;
   const isFileModeOn = (document.querySelector("#switch-button-checkbox")! as HTMLInputElement).checked; // Only testing. Should be remved or implemented on other way
 
-  invoke("text_hash_processing", {
+  document.getElementById("hash_output_text")!.innerHTML = await invoke("text_hash_processing", {
     inputStr: selectedPathString,
     hashType: selected_algorithm,
     isFileModeOn: isFileModeOn,
-  }).then(
-    (output_hash) =>
-      (document.getElementById("hash_output_text")!.innerHTML = output_hash.hash)
-  );
+  });
+  console.log(document.getElementById("hash_output_text")!.innerHTML)
+
 };
 
 //MISC FUNCTIONS:
- function copyToClipboard() {
+export function copyToClipboard() {
   var copyText = document.getElementById("hash_output_text")!;
   if (copyText != null){
 

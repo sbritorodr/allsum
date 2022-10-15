@@ -4,21 +4,21 @@
     <Title>Allsum</Title>
     <link rel="stylesheet" href="./src/assets.css">
     <link rel="stylesheet" href="./src/style.css">
+    <script type="module" src="/src/main.ts" defer></script>
 </head>
 
 <body>
     <h1 id="Title">Allsum!</h1>
-    <div class="switch_button_container">
-        <div class="switch-button">
-            <input class="switch-button-checkbox" type="checkbox" id="switch-button-checkbox"
-                onclick="hashMode()"></input>
-            <!-- Don't forget is reversed in the animation: If text is "Checked" it means it's not selected in the css animation-->
-            <label class="switch-button-label" for=""><span class="switch-button-label-span">Text</span></label>
-        </div>
-    </div>
     <div class="donate_div" onclick="openLink('https://ko-fi.com/sbritorodr')">
         <img src="./src/assets/donate.svg" alt="donate icon">
         <span>Donate!</span>
+    </div>
+    <div class="switch_button_container">
+        <div class="switch-button">
+            <input class="switch-button-checkbox" type="checkbox" id="switch-button-checkbox"></input> <!-- Summon hashMode()-->
+            <!-- Don't forget is reversed in the animation: If text is "Checked" it means it's not selected in the css animation-->
+            <label class="switch-button-label" for=""><span class="switch-button-label-span">Text</span></label>
+        </div>
     </div>
     <div id="hash_content_text">
         <div id="text-input-div">
@@ -47,13 +47,13 @@
                     <option value="whirlpool">WhirlPool</option>
                 </select>
                 <div id="submit_button_div">
-                    <input type="button" id="submit_button_text" value="Allsum!" onclick="getTextInput()">
+                    <input type="button" id="submit_button_text" value="Allsum!"> <!-- Summon getTextInput();-->
                 </div>
             </div>
         </div>
         <div id="hash-input">
         </div>
-        <div id="hash_text_output_div" onclick="copyToClipboard()">
+        <div id="hash_text_output_div">
             <output id="hash_output_text"></output>
         </div>
     </div>
@@ -63,7 +63,8 @@
             <p id="float-message-text">This is an error message</p>
         </div>
     </div>
-    <script src="./src/main.ts"></script>
+    
+    
 </body>
 
 </html>

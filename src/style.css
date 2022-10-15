@@ -215,7 +215,6 @@ body {
   min-width: 308px;
   max-width: 712px;
   height: 3rem;
-  font-size: 2rem;
   padding-left: 1rem;
   padding-bottom: 3px;
   color: #ffff;
@@ -228,9 +227,11 @@ body {
   word-break: normal;
   /*! box-shadow: inset 0 0 3px #000000; */
   font-family: monospace;
-  font-size: 2rem;
+  font-size: 1.98rem;
 }
-
+#hash_output_text::-webkit-scrollbar{
+  display:none;
+}
 /* FLOATNG MESSAGE: https://kruxor.com/view/code/GbiHX/floating-message-box-on-bottom-right-of-screen-with-close-button/#! */
 .float-message {
   position: fixed;

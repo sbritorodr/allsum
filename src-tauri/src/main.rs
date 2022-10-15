@@ -6,22 +6,31 @@
 // For some reason™️, tauri converts variables from snake_case to camelCase, creating an error of unused keys
 
 use std::time::{Instant};
-use serde::Serialize; //by looking at .toml, serde_json is enabled
+use serde::{Serialize, Deserialize}; //by looking at .toml, serde_json is enabled
 use file::readFilefromPath;
 mod file;
 mod algorithms;
 use algorithms::*;
 use tauri_plugin_fs_extra::FsExtra;
+use wasm_typescript_definition::TypescriptDefinition;
+use wasm_bindgen::prelude::wasm_bindgen;
 
-#[derive(Serialize)] // Tauri for some reason™️ gives me a strange error if I don't add this.
+#[derive(TypescriptDefinition, Serialize, Deserialize)] 
+#[serde(tag = "tag", content = "fields")]
+enum OutputHash{
+  Hash(String)
+}
+// Tauri for some reason™️ gives me a strange error if I don't add this.
+#[derive(Serialize)]
 struct OutputToJS { // Tauri official guide really has the worst beginner documentation 
+
   hash: String,     // I've ever seen. (I still think Tauri is a wonderful api)
   etime: String
 } // This struct will help me to "Store" in a cstruct all the output all the "hash backend" is
   // Doing in order have less function calls between both.
 
 #[tauri::command]
-fn text_hash_processing(inputStr: &str, hashType: &str, isFileModeOn: bool) -> OutputToJS { 
+fn text_hash_processing(inputStr: &str, hashType: &str, isFileModeOn: bool) -> String { 
   let input_bytes: Vec<u8> = 
   if isFileModeOn {
     let input_vec = readFilefromPath(inputStr);
@@ -29,7 +38,7 @@ fn text_hash_processing(inputStr: &str, hashType: &str, isFileModeOn: bool) -> O
   } else {
     inputStr.as_bytes().to_owned()
   };
-  bytes_hash_processing(&input_bytes, hashType)
+  bytes_hash_processing(&input_bytes, hashType).hash // ToDo: Complete rework of etime
 }
 
 fn bytes_hash_processing(input: &[u8], hashType: &str) -> OutputToJS { //Separated in order to be re-used if I add the sum file mode instead of text

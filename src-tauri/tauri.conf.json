@@ -39,7 +39,7 @@
     "bundle": {
       "active": true,
       "category": "DeveloperTool",
-      "copyright": "",
+      "copyright": "GPL-3.0-or-later",
       "deb": {
         "depends": []
       },

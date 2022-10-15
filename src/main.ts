@@ -1,9 +1,17 @@
 // main.ts
 // Disabled "unused vars and functions. Check tsconfig.json file for more"
-
+// Imports:
 import { invoke } from "@tauri-apps/api/tauri";
+import * as os from '@tauri-apps/api/os'
+import { open as openLink} from "@tauri-apps/api/shell";
+import { open as openFile} from "@tauri-apps/api/dialog"
+import { readBinaryFile } from '@tauri-apps/api/fs'
+
+// Constants: 
+const donationLink = "https://ko-fi.com/sbritorodr"
+
 // System Info:
-const os = window.__TAURI__.os;
+// @ts-ignore
 async function getSystemInfo(){
   const platformName = await os.platform();
   const osType = await os.type();
@@ -15,15 +23,17 @@ async function getSystemInfo(){
 let hashModeButton = document.getElementById('switch-button-checkbox');
 let getTextInputButton = document.getElementById('submit_button_text');
 let copyToClipboardAction = document.getElementById('hash_text_output_div');
+let donationButton = document.getElementById('donate_div');
 
 hashModeButton?.addEventListener("click", hashMode);
 getTextInputButton?.addEventListener("click", getTextInput);
 copyToClipboardAction?.addEventListener("click", copyToClipboard);
+donationButton?.addEventListener("click", () => openLink(donationLink), false); // Go to donation section
+
+// donation button:
 
 // Global functions:
-export async function openLink(link:string){
-  await window.__TAURI__.shell.open(link)
-}
+
 export function msgBox(msg:string, style:string, timer_ms = 5000) {
   const floating_box = document.getElementById("float-message");
   const floating_box_msg = document.getElementById("float-message-text");
@@ -94,11 +104,10 @@ export function hashMode() {
 
 // FILE MANAGE:
 /// OPEN DIALOG AND SEND BYTES TO RUST:
-//const open = window.__TAURI__.dialog.open;
-const readBinaryFile = window.__TAURI__.fs.readBinaryFile;
+
 export async function inputFileProcess(){
   console.log("Processing file");
-  let selected = await window.__TAURI__.dialog.open({
+  let selected = await openFile({
     multiple: false,
     directory: false,
     title: "Select file to be hashed",
@@ -158,6 +167,9 @@ export function copyToClipboard() {
   msgBox("Copied the text", "ok", 2000);
 }
 
+
+
 // Load this functions at startup:
 
-getSystemInfo()
+//// Debug Only:
+//getSystemInfo()

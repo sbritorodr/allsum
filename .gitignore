@@ -27,3 +27,5 @@ dist-ssr
 target/
 Cargo.lock
 test.*
+*.key
+*.key.pub

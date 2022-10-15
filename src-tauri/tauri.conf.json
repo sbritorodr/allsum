@@ -4,7 +4,7 @@
     "beforeBuildCommand": "pnpm build",
     "devPath": "http://localhost:1420",
     "distDir": "../dist",
-    "withGlobalTauri": true
+    "withGlobalTauri": false
   },
   "package": {
     "productName": "allsum",
@@ -73,7 +73,12 @@
       "csp": null
     },
     "updater": {
-      "active": false
+      "active": true,
+      "endpoints": [
+        "https://gist.githubusercontent.com/sbritorodr/23027b34e6d4314c400ecf3d4767fe91/raw/"
+      ],
+      "dialog": true,
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEYwMEEwQjA1NDkxNjlBNzUKUldSMW1oWkpCUXNLOExZUnBoZTNhamw4emZibzU0dExBbjc0cjZyc3hMSmxoenAyaTY5VnVicWsK"
     },
     "windows": [
       {

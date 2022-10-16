@@ -5,7 +5,7 @@ grid-template-rows: 1fr;
 grid-column-gap: 0px;
 grid-row-gap: 0px;">
 <img src=./src-tauri/icons/icon.png style="Height:7rem;">
-![](website/allsum.svg)
+<img src="./website/allsum.png">
 </div>
 
 Advanced and fast hash generator/checker for files and plain text.

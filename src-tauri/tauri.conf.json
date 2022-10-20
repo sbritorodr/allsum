@@ -12,7 +12,7 @@
   },
   "tauri": {
     "allowlist": {
-      "all": true,
+      "all": false,
       "dialog":{
         "open":true
       },
@@ -75,7 +75,7 @@
     "updater": {
       "active": true,
       "endpoints": [
-        "https://gist.githubusercontent.com/sbritorodr/23027b34e6d4314c400ecf3d4767fe91/raw/"
+        "https://github.com/sbritorodr/allsum/releases/latest/download/allsum-updater-info.json"
       ],
       "dialog": true,
       "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEYwMEEwQjA1NDkxNjlBNzUKUldSMW1oWkpCUXNLOExZUnBoZTNhamw4emZibzU0dExBbjc0cjZyc3hMSmxoenAyaTY5VnVicWsK"
@@ -89,7 +89,17 @@
         "center": true,
         "width": 800,
         "minWidth": 881,
-        "minHeight": 540
+        "minHeight": 540,
+        "visible": false,
+        "label": "main"
+      },
+      {
+        "width": 800,
+        "height": 600,
+        "decorations": false,
+        "url": "/dist/splashscreen.html",
+        "label": "splashscreen",
+        "visible": true
       }
     ]
   }

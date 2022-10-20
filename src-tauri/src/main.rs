@@ -8,12 +8,15 @@
 use std::time::{Instant};
 use serde::{Serialize, Deserialize}; //by looking at .toml, serde_json is enabled
 use file::readFilefromPath;
+use std::fs;
 mod file;
 mod algorithms;
 use algorithms::*;
 use tauri_plugin_fs_extra::FsExtra;
+use tauri::Manager;
 use wasm_typescript_definition::TypescriptDefinition;
 use wasm_bindgen::prelude::wasm_bindgen;
+//use std::thread;
 
 #[derive(TypescriptDefinition, Serialize, Deserialize)] 
 #[serde(tag = "tag", content = "fields")]
@@ -28,6 +31,23 @@ struct OutputToJS { // Tauri official guide really has the worst beginner docume
   etime: String
 } // This struct will help me to "Store" in a cstruct all the output all the "hash backend" is
   // Doing in order have less function calls between both.
+
+#[tauri::command]
+async fn close_splashscreen(window: tauri::Window) {
+  // Close splashscreen
+  if let Some(splashscreen) = window.get_window("splashscreen") {
+    splashscreen.close().unwrap();
+  }
+  // Show main window
+  window.get_window("main").unwrap().show().unwrap();
+}
+#[tauri::command]
+async fn open_splashscreen(window: tauri::Window){
+  // Open splashscreen
+  let allwindows = window.windows();
+  fs::write("/Users/sbritorodr/Desktop/PROYECTOS/allsum/test.txt", format!("{:?}", allwindows)).expect("Unable to write file");
+  window.get_window("splashscreen").expect("Cannot get window name 'splashscreen'").show().expect("Cannot show window name 'splahscreen'")
+}
 
 #[tauri::command]
 fn text_hash_processing(inputStr: &str, hashType: &str, isFileModeOn: bool) -> String { 
@@ -60,7 +80,7 @@ fn bytes_hash_processing(input: &[u8], hashType: &str) -> OutputToJS { //Separat
 
 fn main() {
   tauri::Builder::default()
-    .invoke_handler(tauri::generate_handler![text_hash_processing]) //add all used commands here to communicate to js
+    .invoke_handler(tauri::generate_handler![text_hash_processing, close_splashscreen, open_splashscreen]) //add all used commands here to communicate to js
     .plugin(FsExtra::default()) 
     .run(tauri::generate_context!())
     .expect("error while running tauri application");

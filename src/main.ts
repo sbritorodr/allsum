@@ -62,7 +62,7 @@ export function msgBox(msg:string, style:string, timer_ms = 5000) {
 }
 
 export async function getTextInput() {
-  document.getElementsByClassName("lds-ripple")[0].setAttribute("style", "display: block;" );
+  //document.getElementsByClassName("lds-ripple")[0].setAttribute("style", "display: block;" );
   const input_text = (document.querySelector("#text_input")! as HTMLInputElement).value;
   const selected_algorithm = (document.querySelector("#hash_type")! as HTMLInputElement).value;
   const isFileModeOn = (document.querySelector("#switch-button-checkbox")! as HTMLInputElement).checked; // Only testing. Should be remved or implemented on other way
@@ -73,6 +73,7 @@ export async function getTextInput() {
     hashType: selected_algorithm,
     isFileModeOn: isFileModeOn,
   });
+  //invoke('open_splashscreen')
 }
 export function hashMode() {
   let isFileModeOn = document.querySelector("#switch-button-checkbox")! as HTMLInputElement; // false == text mode
@@ -101,7 +102,11 @@ export function hashMode() {
   }
 }
 
-
+document.addEventListener('DOMContentLoaded', () => {
+  // This will wait for the window to load, but you could
+  // run this function on whatever trigger you want
+  invoke('close_splashscreen')
+})
 // FILE MANAGE:
 /// OPEN DIALOG AND SEND BYTES TO RUST:
 

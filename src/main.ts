@@ -102,11 +102,7 @@ export function hashMode() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  // This will wait for the window to load, but you could
-  // run this function on whatever trigger you want
-  invoke('close_splashscreen')
-})
+
 // FILE MANAGE:
 /// OPEN DIALOG AND SEND BYTES TO RUST:
 
@@ -175,6 +171,10 @@ export function copyToClipboard() {
 
 
 // Load this functions at startup:
-
+document.addEventListener('DOMContentLoaded', () => {
+  // This will wait for the window to load, but you could
+  // run this function on whatever trigger you want
+  //invoke('close_splashscreen')
+})
 //// Debug Only:
 //getSystemInfo()

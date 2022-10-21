@@ -8,7 +8,8 @@ grid-row-gap: 0px;">
 <img src="./website/allsum.png" style="height. 4rem;">
 </div>
 <br>
-<img src= "website\example.gif">
+<img src= "website\example.gif" alt="(App showcase gif. View it in your browser if this doesn't load)">
+
 Advanced and fast hash generator/checker for files and plain text.
 Using Tauri!
 # Build:

@@ -5,9 +5,10 @@ grid-template-rows: 1fr;
 grid-column-gap: 0px;
 grid-row-gap: 0px;">
 <img src=./src-tauri/icons/icon.png style="Height:7rem;">
-<img src="./website/allsum.png" style="max-width:40%">
+<img src="./website/allsum.png" style="height. 4rem;">
 </div>
-
+<br>
+<img src= "website\example.gif">
 Advanced and fast hash generator/checker for files and plain text.
 Using Tauri!
 # Build:

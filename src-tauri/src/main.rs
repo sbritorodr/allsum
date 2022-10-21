@@ -6,17 +6,20 @@
 // For some reason™️, tauri converts variables from snake_case to camelCase, creating an error of unused keys
 
 use std::time::{Instant};
+use features::algorithms_selector_string;
 use serde::{Serialize, Deserialize}; //by looking at .toml, serde_json is enabled
 use file::readFilefromPath;
 use std::fs;
-mod file;
-mod algorithms;
 use algorithms::*;
 use tauri_plugin_fs_extra::FsExtra;
 use tauri::Manager;
 use wasm_typescript_definition::TypescriptDefinition;
 use wasm_bindgen::prelude::wasm_bindgen;
 //use std::thread;
+
+mod file;
+mod algorithms;
+mod features;
 
 #[derive(TypescriptDefinition, Serialize, Deserialize)] 
 #[serde(tag = "tag", content = "fields")]
@@ -60,7 +63,7 @@ fn text_hash_processing(inputStr: &str, hashType: &str, isFileModeOn: bool) -> S
   };
   bytes_hash_processing(&input_bytes, hashType).hash // ToDo: Complete rework of etime
 }
-
+#[cfg(not(feature="full"))]
 fn bytes_hash_processing(input: &[u8], hashType: &str) -> OutputToJS { //Separated in order to be re-used if I add the sum file mode instead of text
   let now = Instant::now();
   let output = match hashType {
@@ -68,9 +71,25 @@ fn bytes_hash_processing(input: &[u8], hashType: &str) -> OutputToJS { //Separat
     "sha1" => allsum_sha1(input),
     "sha256" => allsum_sha256(input),
     "sha512" => allsum_sha512(input),
-    "blake3" => allsum_blake3(input),
     "crc32" => allsum_crc32(input),
+    _ => format!("Hash type '{}' is not avaliable", hashType)
+  };
+  let time_elapsed_ms:String = now.elapsed().as_millis().to_string(); //needs to be a string. JavaScript doesn't support u128
+  println!("Time Consumption: {} milliseconds", time_elapsed_ms);
+  OutputToJS { hash: output, etime: time_elapsed_ms }
+}
+#[cfg(feature="full")]
+fn bytes_hash_processing(input: &[u8], hashType: &str) -> OutputToJS { //Separated in order to be re-used if I add the sum file mode instead of text
+  let now = Instant::now();
+  let output = match hashType {
+    "md5" => allsum_md5(input),
+    "sha1" => allsum_sha1(input),
+    "sha256" => allsum_sha256(input),
+    "sha512" => allsum_sha512(input),
+    "crc32" => allsum_crc32(input),
+    "blake3" => allsum_blake3(input),
     "whirlpool" => allsum_whirpool(input),
+    "belT" => allsum_belT(input),
     _ => format!("Hash type '{}' is not avaliable", hashType)
   };
   let time_elapsed_ms:String = now.elapsed().as_millis().to_string(); //needs to be a string. JavaScript doesn't support u128
@@ -78,9 +97,16 @@ fn bytes_hash_processing(input: &[u8], hashType: &str) -> OutputToJS { //Separat
   OutputToJS { hash: output, etime: time_elapsed_ms }
 }
 
+
 fn main() {
+  #[cfg(feature="full")]
+  println!("Full Edition is enabled for production!");
   tauri::Builder::default()
-    .invoke_handler(tauri::generate_handler![text_hash_processing, close_splashscreen, open_splashscreen]) //add all used commands here to communicate to js
+    .invoke_handler(tauri::generate_handler![
+      text_hash_processing, 
+      close_splashscreen, 
+      open_splashscreen, 
+      algorithms_selector_string]) //add all used commands here to communicate to js
     .plugin(FsExtra::default()) 
     .run(tauri::generate_context!())
     .expect("error while running tauri application");

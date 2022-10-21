@@ -1,9 +1,14 @@
 use md5;
 use sha1::{self, Sha1};
 use sha2::{Sha256, Sha512, Digest};
-use blake3;
 use crc32fast;
-use whirlpool;
+// Full version algorithms:
+#[cfg(feature="full")]
+use {
+    whirlpool,
+    blake3,
+    belt_hash,
+};
 
 //  All algorithms are inside this list: https://github.com/RustCrypto/hashes
 // There are some algorithms, such us BLAKE 3 that aren't in this list
@@ -34,22 +39,32 @@ pub fn allsum_sha512(sha512_input: &[u8]) -> String {
     let result = hasher.finalize();
     format!("{:x}", result)
 }
-  
-pub fn allsum_blake3(blake3_input: &[u8]) -> String {
-    eprintln!("Generating BLAKE-3 algorithm...");
-    let result = blake3::hash(blake3_input);
-    format!("{}", result.to_hex())
-}
-  
+
 pub fn allsum_md5(md5_input: &[u8]) -> String{ // For some reason, this website is wrong and it's at the first search result in google if you search "md5 online" https://www.md5.cz/ 
     eprintln!("Generating md5 output...");
     let digest = md5::compute(md5_input);
     format!("{:x}", digest)
 }
+// All algorithms below here are only avaliable in full edition. 
+#[cfg(feature="full")]
+pub fn allsum_blake3(blake3_input: &[u8]) -> String {
+    eprintln!("Generating BLAKE-3 algorithm...");
+    let result = blake3::hash(blake3_input);
+    format!("{}", result.to_hex())
+}
+#[cfg(feature="full")]
 pub fn allsum_whirpool(whirlpool_input: &[u8]) -> String {
     eprintln!("Generating whirpool output");
     let mut hasher = whirlpool::Whirlpool::new();
     hasher.update(whirlpool_input);
+    let result = hasher.finalize();
+    format!("{:x}", result)
+}
+#[cfg(feature="full")]
+pub fn allsum_belT(belT_input:&[u8])-> String {
+    eprintln!("Generating belT output");
+    let mut hasher = belt_hash::BeltHash::new();
+    hasher.update(belT_input);
     let result = hasher.finalize();
     format!("{:x}", result)
 }

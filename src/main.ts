@@ -75,6 +75,9 @@ export async function getTextInput() {
   });
   //invoke('open_splashscreen')
 }
+
+
+// HTML change functions
 export function hashMode() {
   let isFileModeOn = document.querySelector("#switch-button-checkbox")! as HTMLInputElement; // false == text mode
   console.log(typeof isFileModeOn.checked, "Is file mode on?: ",isFileModeOn.checked);
@@ -100,6 +103,10 @@ export function hashMode() {
     msgfileInputHidden.style.display = 'none'
     document.getElementById('text_input')?.removeEventListener("click", inputFileProcess);
   }
+}
+// changes all algoritms depending on if you're using full or essentials version
+async function algorithm_selection(){
+  document.getElementById('hash_type')!.innerHTML = await invoke('algorithms_selector_string')
 }
 
 
@@ -174,7 +181,8 @@ export function copyToClipboard() {
 document.addEventListener('DOMContentLoaded', () => {
   // This will wait for the window to load, but you could
   // run this function on whatever trigger you want
-  //invoke('close_splashscreen')
-})
+  invoke('close_splashscreen')
+});
+algorithm_selection();
 //// Debug Only:
 //getSystemInfo()

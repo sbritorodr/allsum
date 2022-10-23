@@ -12,6 +12,27 @@ grid-row-gap: 0px;">
 
 Advanced and fast hash generator/checker for files and plain text.
 Using Tauri!
+# Full vs Essentials:
+## General caracteristics
+| Characteristics         | Essentials | Full |
+|-------------------------|------------|------|
+| Free, forever           | ✅         | ✅   |
+| Made with love          | ✅         | ✅   |
+| FOSS                    | ✅         | ✅   |
+| GPLv3                   | ✅         | ✅   |
+| Lighweight              | ✅         | ❌   |
+
+## Algorithms
+| Supported<br>Algorithms | Essentials | Full |
+|-------------------------|------------|------|
+| md5                     | ✅          | ✅    |
+| sha-1 \| 256 \| 512     | ✅          | ✅    |
+| md5                     | ✅          | ✅    |
+| crc-32                  | ✅          | ✅    |
+| whirlpool               | ❌          | ✅    |
+| BLAKE-3                 | ❌          | ✅    |
+| belT                    | ❌          | ✅    |
+
 # Build:
 1. It's important to add this tauri plugin before starting. Should be installed by running `npm install` inside the project dir.
 

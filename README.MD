@@ -13,7 +13,6 @@ grid-row-gap: 0px;">
 Advanced and fast hash generator/checker for files and plain text.
 Using Tauri!
 # Full vs Essentials:
-## General caracteristics
 | Characteristics         | Essentials | Full |
 |-------------------------|------------|------|
 | Free, forever           | ✅         | ✅   |
@@ -22,7 +21,6 @@ Using Tauri!
 | GPLv3                   | ✅         | ✅   |
 | Lighweight              | ✅         | ❌   |
 
-## Algorithms
 | Supported<br>Algorithms | Essentials | Full |
 |-------------------------|------------|------|
 | md5                     | ✅          | ✅    |

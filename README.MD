@@ -40,9 +40,9 @@ Using Tauri!
 
 # Contribute:
 ## Add more algorithms:
-All extra hash functions should be added only for the full version. If you think a function is famous enough to be bundled inside all please discuss it in you PR.
+All extra hash functions should be added only for the full version, keep in mind to enable the function to work with the "full" feature. If you think a function is used enough to be bundled inside full and essentials edition, please discuss it in you PR.
 
-I've tried to make adding more and mroe functions as easy as possible, though isn't something like a plugin but more than a extra code to be added.
+I've tried to make the coding easier for adding more hash algorithms, though isn't something like a plugin but more than a extra code to be added.
 
 1. Check if the hash is in [crates.io](crates.io)
 2. Go to `src-tauri\Cargo.toml`, and edit this line under `[dependencies]`: You should add the `optional = "true"` line. For example, let's call a brand new hash "foo"
@@ -93,6 +93,7 @@ pub fn algorithms_selector_string() -> String{
     ...
 }
 ```
+
 7. Congrats! Your hash function is added!. Now test it with `pnpm tauri dev -f full`
 
 

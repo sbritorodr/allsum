@@ -15,7 +15,7 @@ fn main() {
 #[tauri::command]
 pub fn algorithms_selector_string() -> String{
     // to avoid unnecesary sort functions, sort this outside if you want
-    let enabled_algorithms:Vec<&str> = vec!["belT", "blake3", "crc32", "md5", "sha1", "sha256", "sha512", "whirlpool"];
+    let enabled_algorithms:Vec<&str> = vec!["belT", "blake2", "blake3", "crc32", "md5", "sha1", "sha256", "sha512", "shabal", "tiger", "whirlpool"];
     let mut innerHTML:String = String::new(); 
     for algorithmTag in enabled_algorithms{
         innerHTML.push_str(format!("<option value={}>{}</option>\n", algorithmTag, algorithmTag).as_str())

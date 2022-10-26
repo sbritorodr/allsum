@@ -32,7 +32,8 @@ Using Tauri!
 | belT                    | ❌          | ✅    |
 
 # Build:
-1. It's important to add this tauri plugin before starting. Should be installed by running `npm install` inside the project dir.
+1. It's important to add this tauri plugin before starting. Should be installed by 
+running `npm install` inside the project dir.
 
 `pnpm add github:tauri-apps/tauri-plugin-fs-extra`
 
@@ -40,12 +41,16 @@ Using Tauri!
 
 # Contribute:
 ## Add more algorithms:
-All extra hash functions should be added only for the full version, keep in mind to enable the function to work with the "full" feature. If you think a function is used enough to be bundled inside full and essentials edition, please discuss it in you PR.
+All extra hash functions should be added only for the full version, keep in mind to 
+enable the function to work with the "full" feature. If you think a function is used 
+enough to be bundled inside full and essentials edition, please discuss it in you PR.
 
-I've tried to make the coding easier for adding more hash algorithms, though isn't something like a plugin but more than a extra code to be added.
+I've tried to make the coding easier for adding more hash algorithms, though isn't 
+something like a plugin but more than a extra code to be added.
 
 1. Check if the hash is in [crates.io](crates.io)
-2. Go to `src-tauri\Cargo.toml`, and edit this line under `[dependencies]`: You should add the `optional = "true"` line. For example, let's call a brand new hash "foo"
+2. Go to `src-tauri\Cargo.toml`, and edit this line under `[dependencies]`: You should 
+add the `optional = "true"` line. For example, let's call a brand new hash "foo"
 ```toml
 ## Hashes: 
 md5 = "0.7.0" # MIT
@@ -72,7 +77,10 @@ fn bytes_hash_processing(input: &[u8], hashType: &str) -> OutputToJS {
     _ => format!("Hash type '{}' is not avaliable", hashType)
   };
 ```
-5. Go to `src-tauri\src\algorithms.rs` and create a new function at the end of the file. <br>The function **must** have a `[&u8]` input and a `String` output. The function content doesn't matter if the hash works for text and files. <br>If your hash function is using the `Digest` crate or it's inside [RustCrypto/hashes](https://github.com/RustCrypto/hashes) repo, it's easy to implement!:
+5. Go to `src-tauri\src\algorithms.rs` and create a new function at the end of the file. 
+<br>The function **must** have a `[&u8]` input and a `String` output. The function content 
+doesn't matter if the hash works for text and files. <br>If your hash function is using the `Digest` 
+crate or it's inside [RustCrypto/hashes](https://github.com/RustCrypto/hashes) repo, it's easy to implement!:
 ```rust
 #[cfg(feature="full")]
 pub fn allsum_foo(foo_input:&[u8])-> String {
@@ -83,7 +91,8 @@ pub fn allsum_foo(foo_input:&[u8])-> String {
     format!("{:x}", result)
 }
 ```
-6. Go to `src-tauri/src/features.rs` and add the new hash inside `algorithms_selector_string()` function (**THE FULL VERSION FUNCTION, NOT THE SECOND ONE!**). The function should have `#[cfg(feature="full")]` at the top!:
+6. Go to `src-tauri/src/features.rs` and add the new hash inside `algorithms_selector_string()` 
+function (**THE FULL VERSION FUNCTION, NOT THE SECOND ONE!**). The function should have `#[cfg(feature="full")]` at the top!:
 
 ```rust
 #[cfg(feature="full")] // FULL VERSION
@@ -98,4 +107,5 @@ pub fn algorithms_selector_string() -> String{
 
 
 # Copyleft licenses:
-- Donate symbol: <div>Icon made from <a href="http://www.onlinewebfonts.com/icon">Icon Fonts</a> is licensed by CC BY 3.0</div>
+- Donate symbol: <div>Icon made from <a href="http://www.onlinewebfonts.com/icon">Icon Fonts</a> 
+is licensed by CC BY 3.0</div>

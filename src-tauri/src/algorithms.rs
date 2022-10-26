@@ -8,6 +8,9 @@ use {
     whirlpool,
     blake3,
     belt_hash,
+    tiger,
+    shabal,
+    blake2,
 };
 
 //  All algorithms are inside this list: https://github.com/RustCrypto/hashes
@@ -65,6 +68,27 @@ pub fn allsum_belT(belT_input:&[u8])-> String {
     eprintln!("Generating belT output");
     let mut hasher = belt_hash::BeltHash::new();
     hasher.update(belT_input);
+    let result = hasher.finalize();
+    format!("{:x}", result)
+}
+pub fn allsum_tiger(tiger_input:&[u8])-> String {
+    eprintln!("Generating tiger output");
+    let mut hasher = tiger::Tiger::new();
+    hasher.update(tiger_input);
+    let result = hasher.finalize();
+    format!("{:x}", result)
+}
+pub fn allsum_shabal(shabal_input:&[u8])-> String {
+    eprintln!("Generating shabal output");
+    let mut hasher = shabal::Shabal512::new();
+    hasher.update(shabal_input);
+    let result = hasher.finalize();
+    format!("{:x}", result)
+}
+pub fn allsum_blake2(blake2_input:&[u8])-> String {
+    eprintln!("Generating shabal output");
+    let mut hasher = blake2::Blake2s256::new();
+    hasher.update(blake2_input);
     let result = hasher.finalize();
     format!("{:x}", result)
 }

@@ -87,9 +87,12 @@ fn bytes_hash_processing(input: &[u8], hashType: &str) -> OutputToJS { //Separat
     "sha256" => allsum_sha256(input),
     "sha512" => allsum_sha512(input),
     "crc32" => allsum_crc32(input),
+    "blake2" => allsum_blake2(input),
     "blake3" => allsum_blake3(input),
     "whirlpool" => allsum_whirpool(input),
     "belT" => allsum_belT(input),
+    "tiger" => allsum_tiger(input),
+    "shabal" => allsum_shabal(input),
     _ => format!("Hash type '{}' is not avaliable", hashType)
   };
   let time_elapsed_ms:String = now.elapsed().as_millis().to_string(); //needs to be a string. JavaScript doesn't support u128

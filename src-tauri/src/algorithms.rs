@@ -71,6 +71,7 @@ pub fn allsum_belT(belT_input:&[u8])-> String {
     let result = hasher.finalize();
     format!("{:x}", result)
 }
+#[cfg(feature="full")]
 pub fn allsum_tiger(tiger_input:&[u8])-> String {
     eprintln!("Generating tiger output");
     let mut hasher = tiger::Tiger::new();
@@ -78,6 +79,7 @@ pub fn allsum_tiger(tiger_input:&[u8])-> String {
     let result = hasher.finalize();
     format!("{:x}", result)
 }
+#[cfg(feature="full")]
 pub fn allsum_shabal(shabal_input:&[u8])-> String {
     eprintln!("Generating shabal output");
     let mut hasher = shabal::Shabal512::new();
@@ -85,6 +87,7 @@ pub fn allsum_shabal(shabal_input:&[u8])-> String {
     let result = hasher.finalize();
     format!("{:x}", result)
 }
+#[cfg(feature="full")]
 pub fn allsum_blake2(blake2_input:&[u8])-> String {
     eprintln!("Generating shabal output");
     let mut hasher = blake2::Blake2s256::new();

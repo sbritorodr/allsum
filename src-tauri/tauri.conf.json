@@ -1,7 +1,7 @@
 {
   "build": {
-    "beforeDevCommand": "pnpm dev",
-    "beforeBuildCommand": "pnpm build",
+    "beforeDevCommand": "yarn dev",
+    "beforeBuildCommand": "",
     "devPath": "http://localhost:1420",
     "distDir": "../dist",
     "withGlobalTauri": false
@@ -73,7 +73,7 @@
       "csp": null
     },
     "updater": {
-      "active": true,
+      "active": false,
       "endpoints": [
         "https://github.com/sbritorodr/allsum/releases/latest/download/allsum-updater-info.json"
       ],

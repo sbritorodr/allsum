@@ -1,5 +1,6 @@
 name: "publish Essentials"
 on:
+  workflow_dispatch:
   push:
     branches:
       - release

@@ -11,6 +11,7 @@ use {
     tiger,
     shabal,
     blake2,
+    fsb,
 };
 
 //  All algorithms are inside this list: https://github.com/RustCrypto/hashes
@@ -92,6 +93,14 @@ pub fn allsum_blake2(blake2_input:&[u8])-> String {
     eprintln!("Generating shabal output");
     let mut hasher = blake2::Blake2s256::new();
     hasher.update(blake2_input);
+    let result = hasher.finalize();
+    format!("{:x}", result)
+}
+#[cfg(feature="full")]
+pub fn allsum_fsb(fsb_input:&[u8])-> String {
+    eprintln!("Generating shabal output");
+    let mut hasher = fsb::Fsb256::new();
+    hasher.update(fsb_input);
     let result = hasher.finalize();
     format!("{:x}", result)
 }

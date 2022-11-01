@@ -75,11 +75,11 @@ fn bytes_hash_processing(input: &[u8], hashType: &str) -> OutputToJS {
     //Separated in order to be re-used if I add the sum file mode instead of text
     let now = Instant::now();
     let output = match hashType {
+        "crc32" => allsum_crc32(input),
         "md5" => allsum_md5(input),
         "sha1" => allsum_sha1(input),
         "sha256" => allsum_sha256(input),
         "sha512" => allsum_sha512(input),
-        "crc32" => allsum_crc32(input),
         _ => format!("Hash type '{}' is not avaliable", hashType),
     };
     let time_elapsed_ms: String = now.elapsed().as_millis().to_string(); //needs to be a string. JavaScript doesn't support u128
@@ -94,18 +94,18 @@ fn bytes_hash_processing(input: &[u8], hashType: &str) -> OutputToJS {
     //Separated in order to be re-used if I add the sum file mode instead of text
     let now = Instant::now();
     let output = match hashType {
+        "belT" => allsum_belT(input),
+        "blake2" => allsum_blake2(input),
+        "blake3" => allsum_blake3(input),
+        "crc32" => allsum_crc32(input),
+        "fsb" => allsum_fsb(input),
         "md5" => allsum_md5(input),
         "sha1" => allsum_sha1(input),
         "sha256" => allsum_sha256(input),
         "sha512" => allsum_sha512(input),
-        "crc32" => allsum_crc32(input),
-        "blake2" => allsum_blake2(input),
-        "blake3" => allsum_blake3(input),
-        "whirlpool" => allsum_whirpool(input),
-        "belT" => allsum_belT(input),
-        "tiger" => allsum_tiger(input),
         "shabal" => allsum_shabal(input),
-        "fsb" => allsum_fsb(input),
+        "tiger" => allsum_tiger(input),
+        "whirlpool" => allsum_whirpool(input),
         _ => format!("Hash type '{}' is not avaliable", hashType),
     };
     let time_elapsed_ms: String = now.elapsed().as_millis().to_string(); //needs to be a string. JavaScript doesn't support u128
@@ -117,6 +117,8 @@ fn bytes_hash_processing(input: &[u8], hashType: &str) -> OutputToJS {
 }
 
 fn main() {
+    let isFeatureEnabled:bool = if cfg!(feature="full"){true} else{false};
+    println!("is Full Enabled?: {}", isFeatureEnabled);
     #[cfg(feature = "full")]
     println!("Full Edition is enabled for production!");
     tauri::Builder::default()

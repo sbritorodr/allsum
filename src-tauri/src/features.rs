@@ -11,24 +11,16 @@ fn main() {
 }
 */
 
-#[cfg(feature="full")] // FULL VERSION
 #[tauri::command]
 pub fn algorithms_selector_string() -> String{
-    // to avoid unnecesary sort functions, sort this outside if you want
-    let enabled_algorithms:Vec<&str> = vec!["belT", "blake2", "blake3", "crc32", "fsb", "md5", "sha1", "sha256", "sha512", "shabal", "tiger", "whirlpool"];
+    // to avoid unnecesary sort functions, sort this using the provided above
+    let enabled_algorithms:Vec<&str> = match cfg!(feature="full"){
+        // FULL EDITION:
+        true => vec!["belT", "blake2", "blake3", "crc32", "fsb", "md5", "sha1", "sha256", "sha512", "shabal", "tiger", "whirlpool"],
+        // ESSENTIALS EDITION:
+        _ => vec!["crc32", "md5", "sha1", "sha256", "sha512"]
+    };
     let mut innerHTML:String = String::new(); 
-    for algorithmTag in enabled_algorithms{
-        innerHTML.push_str(format!("<option value={}>{}</option>\n", algorithmTag, algorithmTag).as_str())
-    }
-    innerHTML
-}
-
-#[cfg(not(feature="full"))] // essentials VERSION
-#[tauri::command]
-pub fn algorithms_selector_string() -> String{
-    // to avoid unnecesary sort functions, sort this outside
-    let enabled_algorithms:Vec<&str> = vec!["crc32", "md5", "sha1", "sha256", "sha512"]; // to avoid unnecesary sort functions, sort this outside
-    let mut innerHTML:String = String::new();
     for algorithmTag in enabled_algorithms{
         innerHTML.push_str(format!("<option value={}>{}</option>\n", algorithmTag, algorithmTag).as_str())
     }

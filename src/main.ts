@@ -1,10 +1,24 @@
 // main.ts
+/*
+      ___           ___       ___       ___           ___           ___     
+     /\  \         /\__\     /\__\     /\  \         /\__\         /\__\    
+    /::\  \       /:/  /    /:/  /    /::\  \       /:/  /        /::|  |   
+   /:/\:\  \     /:/  /    /:/  /    /:/\ \  \     /:/  /        /:|:|  |   
+  /::\~\:\  \   /:/  /    /:/  /    _\:\~\ \  \   /:/  /  ___   /:/|:|__|__ 
+ /:/\:\ \:\__\ /:/__/    /:/__/    /\ \:\ \ \__\ /:/__/  /\__\ /:/ |::::\__\
+ \/__\:\/:/  / \:\  \    \:\  \    \:\ \:\ \/__/ \:\  \ /:/  / \/__/~~/:/  /
+      \::/  /   \:\  \    \:\  \    \:\ \:\__\    \:\  /:/  /        /:/  / 
+      /:/  /     \:\  \    \:\  \    \:\/:/  /     \:\/:/  /        /:/  /  
+     /:/  /       \:\__\    \:\__\    \::/  /       \::/  /        /:/  /   
+     \/__/         \/__/     \/__/     \/__/         \/__/         \/__/    
+
+*/
 // Disabled "unused vars and functions. Check tsconfig.json file for more"
 // Imports:
 import { invoke } from "@tauri-apps/api/tauri";
 import * as os from '@tauri-apps/api/os'
-import { open as openLink} from "@tauri-apps/api/shell";
-import { open as openFile} from "@tauri-apps/api/dialog"
+import { open as openLink } from "@tauri-apps/api/shell";
+import { open as openFile } from "@tauri-apps/api/dialog"
 import { readBinaryFile } from '@tauri-apps/api/fs'
 
 // Constants: 
@@ -12,7 +26,7 @@ const donationLink = "https://ko-fi.com/sbritorodr"
 
 // System Info:
 // @ts-ignore
-async function getSystemInfo(){
+async function getSystemInfo() {
   const platformName = await os.platform();
   const osType = await os.type();
 
@@ -34,10 +48,10 @@ donationButton?.addEventListener("click", () => openLink(donationLink), false); 
 
 // Global functions:
 
-export function msgBox(msg:string, style:string, timer_ms = 5000) {
+export function msgBox(msg: string, style: string, timer_ms = 5000) {
   const floating_box = document.getElementById("float-message");
   const floating_box_msg = document.getElementById("float-message-text");
-  function msgBoxStatus(isHidden:boolean) {
+  function msgBoxStatus(isHidden: boolean) {
     floating_box!.hidden = isHidden;
   }
   floating_box_msg!.innerHTML = msg;
@@ -80,11 +94,11 @@ export async function getTextInput() {
 // HTML change functions
 export function hashMode() {
   let isFileModeOn = document.querySelector("#switch-button-checkbox")! as HTMLInputElement; // false == text mode
-  console.log(typeof isFileModeOn.checked, "Is file mode on?: ",isFileModeOn.checked);
+  console.log(typeof isFileModeOn.checked, "Is file mode on?: ", isFileModeOn.checked);
   const inputField = document.querySelector(".input")! as HTMLInputElement;
   const containerField = document.querySelector(".input-container")!;
   let msgfileInputHidden = document.getElementById("input-file-msg")!;
-  if (isFileModeOn.checked){ // File Mode:
+  if (isFileModeOn.checked) { // File Mode:
     inputField.type = "button"; //changes the html to display only the file option dinamically
     inputField.id = "file_input";
     /*inputField.setAttribute("onclick", "inputFileProcess();")*/ //Add the "open file" dialog function declared later
@@ -105,7 +119,7 @@ export function hashMode() {
   }
 }
 // changes all algoritms depending on if you're using full or essentials version
-async function algorithm_selection(){
+async function algorithm_selection() {
   document.getElementById('hash_type')!.innerHTML = await invoke('algorithms_selector_string')
 }
 
@@ -113,22 +127,22 @@ async function algorithm_selection(){
 // FILE MANAGE:
 /// OPEN DIALOG AND SEND BYTES TO RUST:
 
-export async function inputFileProcess(){
+export async function inputFileProcess() {
   console.log("Processing file");
   let selected = await openFile({
     multiple: false,
     directory: false,
     title: "Select file to be hashed",
   });
-  if (selected == null){ // User cancelled the dialog. 
-                        //(Doesn't Work!! Gives me this error: 
-                        //"Unhandled Promise Rejection: invalid type: null, expected path string")
+  if (selected == null) { // User cancelled the dialog. 
+    //(Doesn't Work!! Gives me this error: 
+    //"Unhandled Promise Rejection: invalid type: null, expected path string")
     console.error("Open file dialog cancelled by user");
   } else {
-    
+
   };
   let selectedPathString = selected?.toString()!
-  console.log("Selected: ", selectedPathString); 
+  console.log("Selected: ", selectedPathString);
   /* REGEX: https://regexr.com/*/
 
   var regExString = new RegExp(/(\w|[-.])+$/)
@@ -136,7 +150,7 @@ export async function inputFileProcess(){
   // Get filename and extension
   var fileName = regExString.exec(selectedPathString)![0];
   let isExtensionKnown = regExStringExtension.test(String(fileName));
-  if (isExtensionKnown){
+  if (isExtensionKnown) {
     var extension = regExStringExtension.exec(String(fileName))![0];
   } else {
     var extension = "";
@@ -144,12 +158,12 @@ export async function inputFileProcess(){
   console.log("Filename: ", fileName, "\nExtension: ", extension, "isExtensionKnown", isExtensionKnown)
 
   const fileContentInBinary = await readBinaryFile(selectedPathString); // As Uint8Array
-  if (!fileContentInBinary){
+  if (!fileContentInBinary) {
     msgBox("Couldn't read file!", "error");
     return
   }
   msgBox("File Readed!", "ok"); // This is just a dummy. In future versions I'll work better on the frontend
-  
+
   /*let fileMetadata = await metadata(selectedPathString);
   console.log("METADATA: ", fileMetadata)*/
   const selected_algorithm = (document.querySelector("#hash_type")! as HTMLInputElement).value;
@@ -167,14 +181,13 @@ export async function inputFileProcess(){
 //MISC FUNCTIONS:
 export function copyToClipboard() {
   var copyText = document.getElementById("hash_output_text")!;
-  if (copyText != null){
+  if (copyText != null) {
 
   }
   navigator.clipboard.writeText(copyText.textContent!);
   console.log(copyText.textContent);
   msgBox("Copied the text", "ok", 2000);
 }
-
 
 
 // Load this functions at startup:

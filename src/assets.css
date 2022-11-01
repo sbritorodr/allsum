@@ -5,6 +5,7 @@
   height: 43.5;
   text-align: center;
 }
+
 .switch-button {
   background: hsl(231, 47%, 24%);
   border-radius: 30px;
@@ -20,6 +21,7 @@
   left: 50%;
   margin-left: -110px;
 }
+
 .switch-button:before {
   content: "File";
   position: absolute;
@@ -34,6 +36,7 @@
   z-index: 3;
   pointer-events: none;
 }
+
 .switch-button-checkbox {
   cursor: pointer;
   position: absolute;
@@ -45,11 +48,13 @@
   opacity: 0;
   z-index: 2;
 }
-.switch-button-checkbox:checked + .switch-button-label:before {
+
+.switch-button-checkbox:checked+.switch-button-label:before {
   transform: translateX(120px);
   transition: transform 300ms linear;
 }
-.switch-button-checkbox + .switch-button-label {
+
+.switch-button-checkbox+.switch-button-label {
   position: relative;
   padding: 10px 0;
   display: block;
@@ -59,7 +64,8 @@
   user-select: none;
   pointer-events: none;
 }
-.switch-button-checkbox + .switch-button-label:before {
+
+.switch-button-checkbox+.switch-button-label:before {
   content: "";
   background: #d33f49;
   height: 100%;
@@ -71,7 +77,8 @@
   transform: translateX(0);
   transition: transform 300ms;
 }
-.switch-button-checkbox + .switch-button-label .switch-button-label-span {
+
+.switch-button-checkbox+.switch-button-label .switch-button-label-span {
   position: relative;
 }
 
@@ -106,6 +113,7 @@
     height: 0;
     opacity: 0;
   }
+
   4.9% {
     top: 36px;
     left: 36px;
@@ -113,6 +121,7 @@
     height: 0;
     opacity: 0;
   }
+
   5% {
     top: 36px;
     left: 36px;
@@ -120,6 +129,7 @@
     height: 0;
     opacity: 1;
   }
+
   100% {
     top: 0px;
     left: 0px;
@@ -137,6 +147,7 @@
     height: 0;
     opacity: 0;
   }
+
   4.9% {
     top: 36px;
     left: 36px;
@@ -144,6 +155,7 @@
     height: 0;
     opacity: 0;
   }
+
   5% {
     top: 36px;
     left: 36px;
@@ -151,6 +163,7 @@
     height: 0;
     opacity: 1;
   }
+
   100% {
     top: 0px;
     left: 0px;

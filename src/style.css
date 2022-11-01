@@ -31,8 +31,9 @@ body {
   position: relative;
   text-align: center;
 }
+
 #text-input-div {
-  display:grid;
+  display: grid;
   position: relative;
   text-align: center;
   height: auto;
@@ -42,7 +43,8 @@ body {
   justify-items: center;
   /*! align-self: center; */
 }
-.input{
+
+.input {
   min-width: 400;
   padding-left: 1rem;
   padding-bottom: 3px;
@@ -52,8 +54,9 @@ body {
   border-color: transparent;
   transition: all 0.2s ease-in, font-size 0s linear, opacity 0s linear;
 }
-.input.file{
-  opacity: 0% ;
+
+.input.file {
+  opacity: 0%;
   min-width: 500;
   height: 13rem;
   font-size: 1rem;
@@ -63,10 +66,11 @@ body {
   box-shadow: 2px #D33F49;
   padding-left: 0;
 }
-.input.file::file-selector-button{
+
+.input.file::file-selector-button {
   position: relative;
-  scale:461%;
-  width:20%;
+  scale: 461%;
+  width: 20%;
   /*! appearance: none; */
   /*! background-color: #20295a; */
   /*! border-radius: 10px; */
@@ -74,39 +78,44 @@ body {
   top: 45%;
   left: 18%;
   /*! color: white; */
-  
+
 }
-.input-container.file{
+
+.input-container.file {
   transition: all 0.2s ease-in;
   background-color: #20295a;
-  width:30%;
+  width: 30%;
   outline: 2px dashed #D33F49;
-  outline-offset: -20px; /* I'd like to be -10px, but in webkit doesn't work.
+  outline-offset: -20px;
+  /* I'd like to be -10px, but in webkit doesn't work.
                             The bug is even reported 14 years ago and is still
                             unresolved... 
                             https://bugs.webkit.org/show_bug.cgi?id=20807*/
   border-radius: 30px;
 }
-.input-container.file:before{
+
+.input-container.file:before {
   position: absolute;
-  width:35%;
-  height:96%;
-  
+  width: 35%;
+  height: 96%;
+
   background-color: #20295a;
   outline: 2px dashed #D33F49;
   outline-offset: -20px;
 }
-#input-file-msg{
+
+#input-file-msg {
   position: absolute;
   font-size: 2.2vw;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-weight: lighter;
   word-wrap: normal;
-  top:40.4%;
-  left:38.5%;
+  top: 40.4%;
+  left: 38.5%;
   max-width: 23vw;
 }
-.input.text{
+
+.input.text {
   height: 3rem;
   font-size: 2rem;
 }
@@ -122,26 +131,30 @@ body {
   font-size: 1.5rem;
 }
 
-.donate_div{
+.donate_div {
   position: fixed;
   background-color: #D33F49;
   top: 0;
   right: 0;
   padding: 10px
 }
-.donate_div span{
+
+.donate_div span {
   position: relative;
   top: -8px;
   padding: 0px 5px 5px 5px;
   font-size: 1.1rem;
   font-family: Verdana
 }
-.donate_div img{
+
+.donate_div img {
   top: 20px;
   height: 30px;
   padding: 0px 0px 0px 10px;
-  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(278deg) brightness(103%) contrast(102%); /* Thanks to https://codepen.io/sosuke/pen/Pjoqqp */
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(278deg) brightness(103%) contrast(102%);
+  /* Thanks to https://codepen.io/sosuke/pen/Pjoqqp */
 }
+
 #selector_div_flex {
   display: flex;
   text-align: center;
@@ -150,6 +163,7 @@ body {
   align-self: center;
   justify-content: center;
 }
+
 #hash_type {
   font-size: 2rem;
   min-width: 160px;
@@ -163,11 +177,13 @@ body {
   padding-top: 4;
   appearance: none;
 }
+
 #hash_type::hover {
   outline: solid;
   outline-color: #d33f49;
   outline-style: auto;
 }
+
 .lds-ripple {
   /* Set display to "inline" or "block" if you want to show this*/
   left: -10px;
@@ -185,10 +201,12 @@ body {
   width: auto;
   height: auto;
 }
+
 #submit_button_div:hover {
   top: 2px;
   left: 2px;
 }
+
 #submit_button_text {
   width: 143px;
   height: 49px;
@@ -201,6 +219,7 @@ body {
   border-radius: 30px;
   box-shadow: 2px 2px orange;
 }
+
 #submit_button_text:hover {
   background: #d33f49;
   box-shadow: 0px 0px orange;
@@ -210,6 +229,7 @@ body {
   text-align: center;
   margin-top: 11px;
 }
+
 #hash_output_text {
   display: inline-block;
   min-width: 308px;
@@ -229,9 +249,11 @@ body {
   font-family: monospace;
   font-size: 1.98rem;
 }
-#hash_output_text::-webkit-scrollbar{
-  display:none;
+
+#hash_output_text::-webkit-scrollbar {
+  display: none;
 }
+
 /* FLOATNG MESSAGE: https://kruxor.com/view/code/GbiHX/floating-message-box-on-bottom-right-of-screen-with-close-button/#! */
 .float-message {
   position: fixed;
